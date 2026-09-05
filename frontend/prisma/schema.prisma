@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String       @id @default(uuid())
+  email        String       @unique
+  passwordHash String
+  name         String
+  tier         String       @default("FREE")
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+  preferences  Preferences?
+  prompts      Prompt[]
+}
+
+model Preferences {
+  id                 String   @id @default(uuid())
+  userId             String   @unique
+  geminiApiKey       String?
+  openaiApiKey       String?
+  anthropicApiKey    String?
+  defaultProvider    String   @default("google")
+  defaultModel       String   @default("gemini-2.5-flash")
+  defaultCompression String   @default("balanced")
+  addExamples        Boolean  @default(false)
+  autoSaveLibrary    Boolean  @default(false)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Prompt {
+  id                 String   @id @default(uuid())
+  userId             String
+  title              String   @default("Untitled Prompt")
+  originalText       String
+  optimizedText      String
+  masterPromptUsed   String
+  provider           String
+  model              String
+  compressionLevel   String
+  examplesEnabled    Boolean  @default(false)
+  customInstructions String?
+  originalTokens     Int?
+  optimizedTokens    Int?
+  tokensReduced      Int?
+  reductionPercent   Float?
+  isFavorite         Boolean  @default(false)
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
