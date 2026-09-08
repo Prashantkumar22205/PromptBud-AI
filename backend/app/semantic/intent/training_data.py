@@ -24,33 +24,35 @@ from typing import List, Tuple
 
 logger = logging.getLogger(__name__)
 
-# Location of the seed dataset, resolved relative to this file.
+# Location of the V2 balanced development dataset, resolved relative to this file.
 _backend_dir = Path(__file__).parent.parent.parent.parent
-DATA_PATH = _backend_dir / "data" / "intent_samples.json"
-if not DATA_PATH.exists():
-    # Try project root / data / intent_samples.json as fallback
-    DATA_PATH = _backend_dir.parent / "data" / "intent_samples.json"
+DEFAULT_DATA_PATH = _backend_dir / "data" / "intent_samples_v2_balanced.json"
+if not DEFAULT_DATA_PATH.exists():
+    DEFAULT_DATA_PATH = _backend_dir / "data" / "intent_samples.json"
 
 
-def load_training_data() -> Tuple[List[str], List[str]]:
+def load_training_data(data_path: Path | str | None = None) -> Tuple[List[str], List[str]]:
     """
-    Load texts and labels from the seed JSON file.
+    Load texts and labels from the specified or default dataset JSON file.
 
     Returns
     -------
     texts : list of str
     labels : list of str
     """
-    if not DATA_PATH.exists():
-        logger.warning("Intent seed dataset not found at %s; returning empty training data.", DATA_PATH)
+    target_path = Path(data_path) if data_path else DEFAULT_DATA_PATH
+
+    if not target_path.exists():
+        logger.warning("Intent dataset not found at %s; returning empty training data.", target_path)
         return [], []
 
-    with DATA_PATH.open(encoding="utf-8") as fh:
+    with target_path.open(encoding="utf-8") as fh:
         raw = json.load(fh)
 
     samples = raw.get("samples", [])
     texts = [s["text"] for s in samples]
-    labels = [s["intent"] for s in samples]
+    labels = [s["intent"] if "intent" in s else s.get("gold_intent", "other") for s in samples]
 
-    logger.debug("Loaded %d training samples from %s", len(samples), DATA_PATH)
+    logger.debug("Loaded %d training samples from %s", len(samples), target_path)
     return texts, labels
+

@@ -1,0 +1,33 @@
+{
+  "audit_name": "E1 Baseline Reproducibility Audit",
+  "date": "2026-09-07 22:50:28",
+  "dev_dataset": "D:\\Final Project\\PromptBud-AI-main\\PromptBud-AI-main\\backend\\data\\intent_samples_v2_balanced.json",
+  "gold_dataset": "D:\\Final Project\\PromptBud-AI-main\\PromptBud-AI-main\\backend\\data\\gold_intent_samples_v1_1.json",
+  "gold_total_samples": 240,
+  "gold_subsets_breakdown": {
+    "clear_in_scope": 112,
+    "boundary": 60,
+    "OOS": 30,
+    "ambiguous": 30,
+    "robustness": 8
+  },
+  "e1_model_pipeline": {
+    "tfidf": "TfidfVectorizer(ngram_range=(1,2), sublinear_tf=True, min_df=1, max_features=10000, strip_accents='unicode', analyzer='word')",
+    "classifier": "LogisticRegression(C=1.0, max_iter=1000, solver='lbfgs', random_state=42)"
+  },
+  "metrics": {
+    "reproduced_gold_full_240_thresh_009": {
+      "accuracy": 0.7042,
+      "macro_precision": 0.7519,
+      "macro_recall": 0.7524,
+      "macro_f1": 0.7375
+    },
+    "reproduced_gold_full_240_raw_000": {
+      "accuracy": 0.6667,
+      "macro_precision": 0.6926,
+      "macro_recall": 0.7888,
+      "macro_f1": 0.7163
+    }
+  },
+  "explanation_of_discrepancy": "The 70.42% accuracy / 73.75% Macro-F1 metric is the exact, correct evaluation score when evaluating the E1 model across all 240 samples of Frozen Gold Set v1.1 using the production 0.09 confidence threshold. The previously recorded baseline of 76.67% accuracy / 81.24% Macro-F1 corresponds to evaluating on the 180 In-Scope samples subset (Clear In-Scope + Boundary + Robustness) using raw argmax probabilities or excluding out-of-scope/ambiguous items."
+}

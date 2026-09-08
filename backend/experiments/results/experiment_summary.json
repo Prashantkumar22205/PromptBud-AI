@@ -1,0 +1,58 @@
+{
+  "experiment_name": "Module 3 Intent Classification: E1 (TF-IDF) vs E2 (SentenceTransformer)",
+  "date": "2026-09-07 22:55:04",
+  "dev_dataset": "data/intent_samples_v2_balanced.json (160 samples)",
+  "gold_dataset": "data/gold_intent_samples_v1_1.json (240 samples)",
+  "models": {
+    "E1": {
+      "name": "TfidfLogisticIntentClassifier",
+      "representation": "TF-IDF (ngram_range=(1,2), max_features=10000)",
+      "classifier": "LogisticRegression(C=1.0, max_iter=1000, solver='lbfgs', random_state=42)"
+    },
+    "E2": {
+      "name": "SemanticIntentClassifier",
+      "representation": "SentenceTransformer('all-MiniLM-L6-v2', dim=384)",
+      "classifier": "LogisticRegression(C=1.0, max_iter=1000, solver='lbfgs', random_state=42)"
+    }
+  },
+  "development_cv_metrics": {
+    "E1": {
+      "accuracy": 0.525,
+      "macro_precision": 0.6655,
+      "macro_recall": 0.525,
+      "macro_f1": 0.5462
+    },
+    "E2": {
+      "accuracy": 0.75,
+      "macro_precision": 0.7584,
+      "macro_recall": 0.75,
+      "macro_f1": 0.7462
+    }
+  },
+  "gold_test_metrics": {
+    "E1": {
+      "accuracy": 0.7042,
+      "macro_precision": 0.7519,
+      "macro_recall": 0.7524,
+      "macro_f1": 0.7375,
+      "mean_latency_ms": 0.52,
+      "subset_OOS_acc": 0.4667,
+      "subset_ambiguous_acc": 0.5333,
+      "subset_boundary_acc": 0.7,
+      "subset_clear_in_scope_acc": 0.8125,
+      "subset_robustness_acc": 0.75
+    },
+    "E2": {
+      "accuracy": 0.7542,
+      "macro_precision": 0.7345,
+      "macro_recall": 0.7804,
+      "macro_f1": 0.747,
+      "mean_latency_ms": 9.79,
+      "subset_OOS_acc": 0.3,
+      "subset_ambiguous_acc": 0.9667,
+      "subset_boundary_acc": 0.6833,
+      "subset_clear_in_scope_acc": 0.8661,
+      "subset_robustness_acc": 0.625
+    }
+  }
+}

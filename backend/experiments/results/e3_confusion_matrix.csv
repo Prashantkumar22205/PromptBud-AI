@@ -1,0 +1,17 @@
+actual/predicted,educational_explanation,question_answering,code_generation,code_debugging,code_explanation,summarization,translation,rewriting,comparison,data_analysis,creative_writing,classification,information_extraction,problem_solving,content_generation,other
+educational_explanation,10,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0
+question_answering,0,6,0,1,0,0,0,0,2,0,0,0,0,0,0,0
+code_generation,0,0,10,0,2,0,0,1,0,0,0,0,0,1,0,0
+code_debugging,0,1,0,9,1,0,0,0,0,0,0,0,1,0,0,1
+code_explanation,0,0,0,0,10,0,0,0,0,0,0,0,0,1,0,0
+summarization,0,0,0,0,0,9,1,0,0,0,0,1,1,0,0,0
+translation,0,0,0,0,0,0,12,0,0,0,0,0,0,0,0,0
+rewriting,0,0,0,0,0,0,0,8,0,0,0,0,1,0,0,0
+comparison,0,1,0,0,0,0,0,0,13,0,0,0,0,0,0,0
+data_analysis,0,0,0,0,0,0,0,0,0,11,0,0,0,0,0,0
+creative_writing,0,0,0,0,0,0,0,0,0,0,11,0,0,0,0,1
+classification,0,0,0,0,0,0,0,0,0,0,0,11,0,0,0,0
+information_extraction,0,0,0,0,0,0,0,0,0,0,0,0,10,0,0,0
+problem_solving,0,0,0,1,0,0,0,0,0,0,0,0,0,10,0,1
+content_generation,0,0,0,0,0,0,0,0,1,0,0,0,0,0,10,0
+other,0,1,3,5,0,0,1,1,0,1,0,0,0,2,3,50

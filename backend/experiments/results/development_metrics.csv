@@ -1,0 +1,4 @@
+model,accuracy,macro_precision,macro_recall,macro_f1
+E1 (TF-IDF+LR),0.525,0.6655,0.525,0.5462
+E2 (Semantic+LR),0.75,0.7584,0.75,0.7462
+Difference (E2 - E1),0.225,0.0929,0.225,0.2

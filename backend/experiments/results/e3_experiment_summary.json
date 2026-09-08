@@ -1,0 +1,101 @@
+{
+  "experiment_name": "Module 3 E3 Hybrid Intent Classifier Experiment (Probability-Level Fusion)",
+  "date": "2026-09-07 23:03:13",
+  "best_validation_alpha": 0.6,
+  "dev_dataset": "data/intent_samples_v2_balanced.json (160 samples)",
+  "gold_dataset": "data/gold_intent_samples_v1_1.json (240 samples)",
+  "development_cv_metrics": {
+    "E1": {
+      "accuracy": 0.525,
+      "macro_precision": 0.6655,
+      "macro_recall": 0.525,
+      "macro_f1": 0.5462
+    },
+    "E2": {
+      "accuracy": 0.75,
+      "macro_precision": 0.7584,
+      "macro_recall": 0.75,
+      "macro_f1": 0.7462
+    },
+    "E3": {
+      "accuracy": 0.7875,
+      "macro_precision": 0.7991,
+      "macro_recall": 0.7875,
+      "macro_f1": 0.7832
+    }
+  },
+  "gold_test_metrics": {
+    "E1": {
+      "accuracy": 0.7042,
+      "macro_precision": 0.7519,
+      "macro_recall": 0.7524,
+      "macro_f1": 0.7375,
+      "mean_latency_ms": 0.61,
+      "subset_OOS_acc": 0.4667,
+      "subset_OOS_count_correct": 14,
+      "subset_OOS_count_total": 30,
+      "subset_ambiguous_acc": 0.5333,
+      "subset_ambiguous_count_correct": 16,
+      "subset_ambiguous_count_total": 30,
+      "subset_boundary_acc": 0.7,
+      "subset_boundary_count_correct": 42,
+      "subset_boundary_count_total": 60,
+      "subset_clear_in_scope_acc": 0.8125,
+      "subset_clear_in_scope_count_correct": 91,
+      "subset_clear_in_scope_count_total": 112,
+      "subset_robustness_acc": 0.75,
+      "subset_robustness_count_correct": 6,
+      "subset_robustness_count_total": 8,
+      "correct_count": 169,
+      "total_count": 240
+    },
+    "E2": {
+      "accuracy": 0.7542,
+      "macro_precision": 0.7345,
+      "macro_recall": 0.7804,
+      "macro_f1": 0.747,
+      "mean_latency_ms": 10.02,
+      "subset_OOS_acc": 0.3,
+      "subset_OOS_count_correct": 9,
+      "subset_OOS_count_total": 30,
+      "subset_ambiguous_acc": 0.9667,
+      "subset_ambiguous_count_correct": 29,
+      "subset_ambiguous_count_total": 30,
+      "subset_boundary_acc": 0.6833,
+      "subset_boundary_count_correct": 41,
+      "subset_boundary_count_total": 60,
+      "subset_clear_in_scope_acc": 0.8661,
+      "subset_clear_in_scope_count_correct": 97,
+      "subset_clear_in_scope_count_total": 112,
+      "subset_robustness_acc": 0.625,
+      "subset_robustness_count_correct": 5,
+      "subset_robustness_count_total": 8,
+      "correct_count": 181,
+      "total_count": 240
+    },
+    "E3": {
+      "accuracy": 0.8333,
+      "macro_precision": 0.8229,
+      "macro_recall": 0.8618,
+      "macro_f1": 0.8362,
+      "mean_latency_ms": 10.63,
+      "subset_OOS_acc": 0.5333,
+      "subset_OOS_count_correct": 16,
+      "subset_OOS_count_total": 30,
+      "subset_ambiguous_acc": 0.9,
+      "subset_ambiguous_count_correct": 27,
+      "subset_ambiguous_count_total": 30,
+      "subset_boundary_acc": 0.75,
+      "subset_boundary_count_correct": 45,
+      "subset_boundary_count_total": 60,
+      "subset_clear_in_scope_acc": 0.9375,
+      "subset_clear_in_scope_count_correct": 105,
+      "subset_clear_in_scope_count_total": 112,
+      "subset_robustness_acc": 0.875,
+      "subset_robustness_count_correct": 7,
+      "subset_robustness_count_total": 8,
+      "correct_count": 200,
+      "total_count": 240
+    }
+  }
+}

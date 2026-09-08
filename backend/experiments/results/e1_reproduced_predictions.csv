@@ -1,0 +1,241 @@
+id,text,gold_intent,subset,e1_pred_009,e1_conf,e1_pred_raw,correct_009,correct_raw
+gold_001,Explain binary search tree insertion with a clear Python example.,educational_explanation,clear_in_scope,educational_explanation,0.1332,educational_explanation,True,True
+gold_002,Teach me how hash tables resolve collisions step by step.,educational_explanation,clear_in_scope,educational_explanation,0.133,educational_explanation,True,True
+gold_003,Explain the concept of dependency injection for a beginner developer.,educational_explanation,clear_in_scope,educational_explanation,0.1144,educational_explanation,True,True
+gold_004,Help a student understand dynamic programming memoization.,educational_explanation,clear_in_scope,other,0.0823,problem_solving,False,False
+gold_005,Explain the difference between synchronous and asynchronous code to a novice.,educational_explanation,clear_in_scope,educational_explanation,0.0993,educational_explanation,True,True
+gold_006,Describe how garbage collection works in Python in simple terms.,educational_explanation,clear_in_scope,educational_explanation,0.1159,educational_explanation,True,True
+gold_007,Explain the concept of RESTful APIs to an entry-level programmer.,educational_explanation,clear_in_scope,educational_explanation,0.0928,educational_explanation,True,True
+gold_008,What is the time complexity of quicksort in the worst case?,question_answering,clear_in_scope,question_answering,0.111,question_answering,True,True
+gold_009,What are the key differences between HTTP 1.1 and HTTP 2.0?,question_answering,clear_in_scope,comparison,0.1481,comparison,False,False
+gold_010,Why does Python use global interpreter lock (GIL)?,question_answering,clear_in_scope,other,0.0862,code_debugging,False,False
+gold_011,What is the purpose of virtual environment in Python?,question_answering,clear_in_scope,question_answering,0.1151,question_answering,True,True
+gold_012,How does Docker containerization differ from traditional virtual machines?,question_answering,clear_in_scope,other,0.0765,question_answering,False,True
+gold_013,What causes a stack overflow error in recursive functions?,question_answering,clear_in_scope,code_debugging,0.0911,code_debugging,False,False
+gold_014,What is the main function of an index in relational databases?,question_answering,clear_in_scope,question_answering,0.1458,question_answering,True,True
+gold_015,Write a Python function to compute Fibonacci numbers using dynamic programming.,code_generation,clear_in_scope,code_generation,0.1239,code_generation,True,True
+gold_016,Generate a Go function to read a file concurrently.,code_generation,clear_in_scope,code_generation,0.107,code_generation,True,True
+gold_017,Create a SQL query to calculate 30-day rolling average sales.,code_generation,clear_in_scope,code_generation,0.098,code_generation,True,True
+gold_018,Write a TypeScript class implementing a generic Stack data structure.,code_generation,clear_in_scope,other,0.0831,code_generation,False,True
+gold_019,Create a FastAPI POST endpoint that validates user JSON payload.,code_generation,clear_in_scope,code_generation,0.114,code_generation,True,True
+gold_020,Write a C++ program to find the shortest path in a graph using Dijkstra's algorithm.,code_generation,clear_in_scope,code_generation,0.0968,code_generation,True,True
+gold_021,Generate a Bash script to backup log files daily.,code_generation,clear_in_scope,code_generation,0.0977,code_generation,True,True
+gold_022,Fix this Python function that raises RecursionError on large inputs.,code_debugging,clear_in_scope,other,0.0895,other,False,False
+gold_023,My JavaScript code throws Uncaught TypeError: Cannot read property of undefined.,code_debugging,clear_in_scope,code_debugging,0.1042,code_debugging,True,True
+gold_024,Debug this SQL query that hangs indefinitely when joining large tables.,code_debugging,clear_in_scope,code_debugging,0.1,code_debugging,True,True
+gold_025,Find and fix the memory leak in this C++ pointer implementation.,code_debugging,clear_in_scope,other,0.0852,information_extraction,False,False
+gold_026,My React useEffect hook is causing an infinite render loop. Debug it.,code_debugging,clear_in_scope,code_debugging,0.1285,code_debugging,True,True
+gold_027,Fix this regular expression that fails on valid email addresses.,code_debugging,clear_in_scope,other,0.1073,other,False,False
+gold_028,This Java multithreaded method causes a deadlock. Resolve the bug.,code_debugging,clear_in_scope,other,0.0751,code_debugging,False,True
+gold_029,Explain this Python list comprehension and what each clause does.,code_explanation,clear_in_scope,code_explanation,0.1523,code_explanation,True,True
+gold_030,Walk me through this Rust ownership mechanism example line by line.,code_explanation,clear_in_scope,code_explanation,0.1319,code_explanation,True,True
+gold_031,Explain how this SQL window function ROW_NUMBER() OVER () calculates rankings.,code_explanation,clear_in_scope,code_explanation,0.1009,code_explanation,True,True
+gold_032,Describe the execution flow of this async/await Node.js function.,code_explanation,clear_in_scope,other,0.0821,code_generation,False,False
+gold_033,Explain the purpose of decorators in this Python class snippet.,code_explanation,clear_in_scope,code_explanation,0.1167,code_explanation,True,True
+gold_034,Walk me through this C algorithm for matrix multiplication.,code_explanation,clear_in_scope,code_explanation,0.1062,code_explanation,True,True
+gold_035,Explain what this Docker Compose YAML file configures.,code_explanation,clear_in_scope,code_explanation,0.1379,code_explanation,True,True
+gold_036,Summarize this 10-page market research report into 5 key points.,summarization,clear_in_scope,summarization,0.1489,summarization,True,True
+gold_037,Provide a concise summary of the attached legal contract terms.,summarization,clear_in_scope,summarization,0.1246,summarization,True,True
+gold_038,Condense this lengthy email thread into a 3-bullet summary.,summarization,clear_in_scope,summarization,0.1225,summarization,True,True
+gold_039,Summarize the major findings of this academic paper on transformer models.,summarization,clear_in_scope,summarization,0.0973,summarization,True,True
+gold_040,Give me a high-level summary of this product requirements document.,summarization,clear_in_scope,summarization,0.1296,summarization,True,True
+gold_041,Create a executive summary for this quarterly financial audit.,summarization,clear_in_scope,summarization,0.1192,summarization,True,True
+gold_042,Summarize the customer feedback entries into core themes.,summarization,clear_in_scope,summarization,0.1047,summarization,True,True
+gold_043,Translate this user agreement from German to English.,translation,clear_in_scope,translation,0.2945,translation,True,True
+gold_044,Convert this news paragraph from Japanese to Spanish.,translation,clear_in_scope,translation,0.1899,translation,True,True
+gold_045,Translate the following press release into Mandarin Chinese.,translation,clear_in_scope,translation,0.1276,translation,True,True
+gold_046,Translate this patient symptom report from French to English.,translation,clear_in_scope,translation,0.2782,translation,True,True
+gold_047,Convert this technical document from English to Italian.,translation,clear_in_scope,translation,0.2475,translation,True,True
+gold_048,Translate this abstract into Russian.,translation,clear_in_scope,translation,0.1792,translation,True,True
+gold_049,Translate this mobile app interface text to Korean.,translation,clear_in_scope,translation,0.1983,translation,True,True
+gold_050,Rewrite this casual slack message to sound formal and polite for executive stakeholders.,rewriting,clear_in_scope,rewriting,0.1519,rewriting,True,True
+gold_051,Improve the readability and flow of this blog introduction.,rewriting,clear_in_scope,rewriting,0.0972,rewriting,True,True
+gold_052,Rephrase this sentence to eliminate passive voice.,rewriting,clear_in_scope,translation,0.0948,translation,False,False
+gold_053,Rewrite this paragraph to make it concise and active.,rewriting,clear_in_scope,rewriting,0.1993,rewriting,True,True
+gold_054,Polish this cover letter draft for clarity and punchy tone.,rewriting,clear_in_scope,rewriting,0.0978,rewriting,True,True
+gold_055,Refactor this text description to be persuasive and clear.,rewriting,clear_in_scope,rewriting,0.1236,rewriting,True,True
+gold_056,Rewrite this proposal summary for a general non-technical reader.,rewriting,clear_in_scope,rewriting,0.1252,rewriting,True,True
+gold_057,"Compare PostgreSQL and MongoDB across scalability, schema flexibility, and query features.",comparison,clear_in_scope,comparison,0.1322,comparison,True,True
+gold_058,What are the trade-offs between gRPC and REST APIs for backend microservices?,comparison,clear_in_scope,comparison,0.1474,comparison,True,True
+gold_059,Compare Kafka and RabbitMQ for distributed event streaming.,comparison,clear_in_scope,comparison,0.1327,comparison,True,True
+gold_060,Compare PyTorch and TensorFlow for deep learning research.,comparison,clear_in_scope,comparison,0.1283,comparison,True,True
+gold_061,Contrast monolithic architecture with microservices architecture.,comparison,clear_in_scope,comparison,0.1025,comparison,True,True
+gold_062,What are the pros and cons of Serverless computing versus dedicated Kubernetes clusters?,comparison,clear_in_scope,comparison,0.165,comparison,True,True
+gold_063,Compare breadth-first search and depth-first search algorithms.,comparison,clear_in_scope,comparison,0.1434,comparison,True,True
+gold_064,Analyze this CSV dataset of retail transactions and identify top sales trends.,data_analysis,clear_in_scope,data_analysis,0.156,data_analysis,True,True
+gold_065,"Given this monthly revenue dataframe, compute quarterly growth rate and anomalies.",data_analysis,clear_in_scope,other,0.0797,data_analysis,False,True
+gold_066,Perform a correlation analysis on these experiment features.,data_analysis,clear_in_scope,data_analysis,0.1111,data_analysis,True,True
+gold_067,Analyze customer churn data to determine primary loss factors.,data_analysis,clear_in_scope,data_analysis,0.1032,data_analysis,True,True
+gold_068,Examine this server latency metric dataset for peak load patterns.,data_analysis,clear_in_scope,data_analysis,0.1022,data_analysis,True,True
+gold_069,Analyze this user engagement metrics table and summarize key insights.,data_analysis,clear_in_scope,data_analysis,0.1314,data_analysis,True,True
+gold_070,Extract statistical distributions and outliers from this survey dataset.,data_analysis,clear_in_scope,information_extraction,0.1381,information_extraction,False,False
+gold_071,Write a science fiction story about a time traveler accidentally changing history.,creative_writing,clear_in_scope,creative_writing,0.1145,creative_writing,True,True
+gold_072,Compose a sonnet celebrating space exploration.,creative_writing,clear_in_scope,other,0.0758,creative_writing,False,True
+gold_073,Write a imaginative dialog between the Sun and the Moon.,creative_writing,clear_in_scope,comparison,0.1014,comparison,False,False
+gold_074,Create a vivid story intro set in a cyberpunk city.,creative_writing,clear_in_scope,other,0.0858,content_generation,False,False
+gold_075,Write a short creative fable about patience.,creative_writing,clear_in_scope,creative_writing,0.1487,creative_writing,True,True
+gold_076,Compose a fictional monologue from the perspective of an ancient oak tree.,creative_writing,clear_in_scope,creative_writing,0.0902,creative_writing,True,True
+gold_077,Write a poem describing autumn leaves falling.,creative_writing,clear_in_scope,creative_writing,0.1147,creative_writing,True,True
+gold_078,"Classify these 20 customer tickets into Bug, Feature Request, or Inquiry.",classification,clear_in_scope,classification,0.1749,classification,True,True
+gold_079,"Categorize these news articles into Politics, Sports, Technology, or Finance.",classification,clear_in_scope,classification,0.1702,classification,True,True
+gold_080,"Label these customer review texts as Positive, Negative, or Neutral.",classification,clear_in_scope,classification,0.1806,classification,True,True
+gold_081,Classify these incoming emails into Spam or Inbox.,classification,clear_in_scope,classification,0.195,classification,True,True
+gold_082,Categorize these Python exceptions into Built-in vs Custom categories.,classification,clear_in_scope,classification,0.126,classification,True,True
+gold_083,"Assign priority labels (High, Medium, Low) to these Jira tasks.",classification,clear_in_scope,classification,0.1355,classification,True,True
+gold_084,Classify these ML algorithms into Supervised vs Unsupervised.,classification,clear_in_scope,classification,0.1403,classification,True,True
+gold_085,Extract all phone numbers and email addresses from this contact document.,information_extraction,clear_in_scope,information_extraction,0.2169,information_extraction,True,True
+gold_086,Pull out all company names and revenue figures from this earnings call transcript.,information_extraction,clear_in_scope,information_extraction,0.1934,information_extraction,True,True
+gold_087,List all software requirements mentioned in section 3 of this document.,information_extraction,clear_in_scope,information_extraction,0.1529,information_extraction,True,True
+gold_088,Extract all key dates and milestones from this project schedule.,information_extraction,clear_in_scope,information_extraction,0.2151,information_extraction,True,True
+gold_089,Pull out the list of ingredients and quantities from this recipe text.,information_extraction,clear_in_scope,information_extraction,0.157,information_extraction,True,True
+gold_090,"Extract author names, publication year, and DOI numbers from these references.",information_extraction,clear_in_scope,information_extraction,0.1035,information_extraction,True,True
+gold_091,List all action items assigned to John from this meeting minutes text.,information_extraction,clear_in_scope,information_extraction,0.192,information_extraction,True,True
+gold_092,How can I prevent race conditions when updating shared cache keys across instances?,problem_solving,clear_in_scope,problem_solving,0.1267,problem_solving,True,True
+gold_093,What is the optimal strategy to reduce database CPU spikes during flash sales?,problem_solving,clear_in_scope,question_answering,0.1129,question_answering,False,False
+gold_094,How should I design an architectural fallback strategy if third-party payment gateway goes down?,problem_solving,clear_in_scope,problem_solving,0.0987,problem_solving,True,True
+gold_095,What approach minimizes network overhead for real-time multiplayer telemetry?,problem_solving,clear_in_scope,other,0.0754,content_generation,False,False
+gold_096,How do I mitigate DDoS attacks at the API gateway layer?,problem_solving,clear_in_scope,problem_solving,0.0982,problem_solving,True,True
+gold_097,"Recommend an architecture to scale WebSocket connections to 500,000 active clients.",problem_solving,clear_in_scope,other,0.0896,translation,False,False
+gold_098,How can I structure database sharding without causing cross-shard join bottlenecks?,problem_solving,clear_in_scope,problem_solving,0.1284,problem_solving,True,True
+gold_099,Create a comprehensive email newsletter template for a new product announcement.,content_generation,clear_in_scope,content_generation,0.1536,content_generation,True,True
+gold_100,Generate 10 engaging social media post ideas for a developer event.,content_generation,clear_in_scope,content_generation,0.1249,content_generation,True,True
+gold_101,Write a landing page hero copy for an AI productivity app.,content_generation,clear_in_scope,content_generation,0.1197,content_generation,True,True
+gold_102,Create an outline for a 4-week workshop on cloud-native computing.,content_generation,clear_in_scope,content_generation,0.1111,content_generation,True,True
+gold_103,Generate a series of interview questions for a Lead DevOps Engineer role.,content_generation,clear_in_scope,content_generation,0.135,content_generation,True,True
+gold_104,Write a welcome onboarding email series for new platform subscribers.,content_generation,clear_in_scope,content_generation,0.1045,content_generation,True,True
+gold_105,Create a technical documentation outline for a GraphQL microservice API.,content_generation,clear_in_scope,other,0.0874,content_generation,False,True
+gold_106,Process this item.,other,clear_in_scope,other,0.1181,other,True,True
+gold_107,Do it now.,other,clear_in_scope,other,0.1071,other,True,True
+gold_108,Make the changes.,other,clear_in_scope,other,0.0849,other,True,True
+gold_109,Handle this request.,other,clear_in_scope,other,0.114,other,True,True
+gold_110,Perform action.,other,clear_in_scope,other,0.074,data_analysis,True,False
+gold_111,Fix.,other,clear_in_scope,other,0.1115,other,True,True
+gold_112,Run.,other,clear_in_scope,other,0.0793,problem_solving,True,False
+gold_113,Explain binary search and provide Python code.,educational_explanation,boundary,educational_explanation,0.1016,educational_explanation,True,True
+gold_114,Compare Python and Java and provide code examples.,comparison,boundary,comparison,0.1338,comparison,True,True
+gold_115,Write a Python function and explain it.,code_generation,boundary,code_generation,0.1023,code_generation,True,True
+gold_116,How do I fix this null pointer error in Java?,code_debugging,boundary,other,0.0998,other,False,False
+gold_117,What does this recursion do and why does it fail?,code_explanation,boundary,code_explanation,0.1286,code_explanation,True,True
+gold_118,Summarize this paper and write a blog post about it.,summarization,boundary,summarization,0.1159,summarization,True,True
+gold_119,Translate this text and rewrite it in a professional tone.,translation,boundary,translation,0.1391,translation,True,True
+gold_120,Rewrite this report and extract the key metrics.,rewriting,boundary,information_extraction,0.0971,information_extraction,False,False
+gold_121,Compare these two SQL queries and tell me which is faster.,comparison,boundary,comparison,0.098,comparison,True,True
+gold_122,Analyze this data and generate a chart summary script.,data_analysis,boundary,data_analysis,0.1131,data_analysis,True,True
+gold_123,Write a short creative story that explains recursion to a student.,creative_writing,boundary,creative_writing,0.1487,creative_writing,True,True
+gold_124,Classify these reviews and summarize positive ones.,classification,boundary,classification,0.1453,classification,True,True
+gold_125,Extract all dates and format them into a table.,information_extraction,boundary,information_extraction,0.1217,information_extraction,True,True
+gold_126,How do I solve this memory leak in Python?,problem_solving,boundary,problem_solving,0.1121,problem_solving,True,True
+gold_127,Generate a blog post and write code for an embedded demo widget.,content_generation,boundary,content_generation,0.1541,content_generation,True,True
+gold_128,What is bubble sort and how does it compare to insertion sort?,comparison,boundary,question_answering,0.146,question_answering,False,False
+gold_129,Write code to parse log files and analyze errors.,code_generation,boundary,code_generation,0.0982,code_generation,True,True
+gold_130,Explain this regex pattern and fix the bug in it.,code_debugging,boundary,code_explanation,0.1222,code_explanation,False,False
+gold_131,Walk me through this SQL query and suggest performance fixes.,code_explanation,boundary,code_explanation,0.1085,code_explanation,True,True
+gold_132,Summarize this article and translate it to French.,summarization,boundary,translation,0.1109,translation,False,False
+gold_133,Translate this English code comment and explain the function.,translation,boundary,translation,0.1418,translation,True,True
+gold_134,Rewrite this Python script to be object-oriented.,code_generation,boundary,rewriting,0.122,rewriting,False,False
+gold_135,What are the pros and cons of Docker vs virtual machines for Python deployment?,comparison,boundary,comparison,0.1607,comparison,True,True
+gold_136,Analyze these log files and fix the crashing service.,problem_solving,boundary,other,0.0809,data_analysis,False,False
+gold_137,Write a fictional dialogue where a developer explains REST to a designer.,creative_writing,boundary,creative_writing,0.098,creative_writing,True,True
+gold_138,Categorize these user queries and generate responses.,classification,boundary,classification,0.1154,classification,True,True
+gold_139,Pull out key dates from this contract and summarize legal risks.,information_extraction,boundary,information_extraction,0.1563,information_extraction,True,True
+gold_140,How can I improve my application performance and reduce memory?,problem_solving,boundary,problem_solving,0.1195,problem_solving,True,True
+gold_141,Create an article outline and write a sample code snippet.,content_generation,boundary,content_generation,0.0923,content_generation,True,True
+gold_142,Explain tree traversal algorithms and give Java code.,educational_explanation,boundary,other,0.0808,educational_explanation,False,True
+gold_143,What is the difference between shallow copy and deep copy in Python?,question_answering,boundary,question_answering,0.1692,question_answering,True,True
+gold_144,Write a script that extracts emails and sends them a message.,code_generation,boundary,code_generation,0.0917,code_generation,True,True
+gold_145,Debug this script and rewrite it cleanly.,code_debugging,boundary,rewriting,0.0943,rewriting,False,False
+gold_146,Explain why this multithreaded code deadlocks.,code_explanation,boundary,code_explanation,0.1036,code_explanation,True,True
+gold_147,Summarize user feedback and classify themes.,summarization,boundary,other,0.0807,code_generation,False,False
+gold_148,Translate this README and create a new installation guide.,translation,boundary,translation,0.123,translation,True,True
+gold_149,Rewrite this function to run faster.,code_generation,boundary,rewriting,0.1077,rewriting,False,False
+gold_150,Compare React and Vue performance and provide example components.,comparison,boundary,comparison,0.1442,comparison,True,True
+gold_151,Analyze this dataset and create a Python script to plot it.,data_analysis,boundary,data_analysis,0.1126,data_analysis,True,True
+gold_152,Write a poem explaining quantum entanglement.,creative_writing,boundary,creative_writing,0.1154,creative_writing,True,True
+gold_153,Classify these support tickets and extract contact names.,classification,boundary,classification,0.1482,classification,True,True
+gold_154,Extract error messages from logs and debug the cause.,code_debugging,boundary,information_extraction,0.1111,information_extraction,False,False
+gold_155,How do I optimize database queries for high concurrency?,problem_solving,boundary,problem_solving,0.0994,problem_solving,True,True
+gold_156,Generate a sales newsletter and compare two pricing strategies.,content_generation,boundary,comparison,0.1055,comparison,False,False
+gold_157,Explain stack vs heap memory and show C allocation examples.,educational_explanation,boundary,educational_explanation,0.1175,educational_explanation,True,True
+gold_158,What is the difference between process and thread in Linux?,question_answering,boundary,question_answering,0.2184,question_answering,True,True
+gold_159,Write a decorator in Python and explain how it modifies functions.,code_generation,boundary,educational_explanation,0.1103,educational_explanation,False,False
+gold_160,Find out why my API request returns 500 internal server error.,code_debugging,boundary,code_debugging,0.1117,code_debugging,True,True
+gold_161,Explain this regex and generate a sample matching string.,code_explanation,boundary,code_explanation,0.1222,code_explanation,True,True
+gold_162,Summarize key points from this meeting and extract action items.,summarization,boundary,summarization,0.1416,summarization,True,True
+gold_163,Translate this French technical document and explain terms.,translation,boundary,translation,0.1362,translation,True,True
+gold_164,Rewrite this essay to improve flow and summarize main points.,rewriting,boundary,rewriting,0.1461,rewriting,True,True
+gold_165,Compare REST vs GraphQL and write sample queries for both.,comparison,boundary,comparison,0.1048,comparison,True,True
+gold_166,Analyze financial metrics and write an executive summary.,data_analysis,boundary,summarization,0.1026,summarization,False,False
+gold_167,Write a sci-fi story where a character solves a sorting problem.,creative_writing,boundary,other,0.087,creative_writing,False,True
+gold_168,Classify these articles and summarize key findings.,classification,boundary,classification,0.1232,classification,True,True
+gold_169,Extract all URLs from this text and check if they work.,information_extraction,boundary,information_extraction,0.1696,information_extraction,True,True
+gold_170,How do I resolve CORS errors in FastAPI?,problem_solving,boundary,other,0.0841,problem_solving,False,True
+gold_171,Generate product descriptions and summarize key features.,content_generation,boundary,other,0.0823,content_generation,False,True
+gold_172,Explain gradient descent and provide Python NumPy code.,educational_explanation,boundary,educational_explanation,0.114,educational_explanation,True,True
+gold_173,Generate a photorealistic 3D image of a futuristic city sunset.,other,OOS,content_generation,0.1177,content_generation,False,False
+gold_174,Synthesize a 10-second audio track of ocean waves crashing.,other,OOS,other,0.0851,summarization,True,False
+gold_175,Turn off the living room lights and set thermostat to 72 degrees.,other,OOS,other,0.0787,comparison,True,False
+gold_176,Diagnose my chest pain and prescribe antibiotic dosage.,other,OOS,code_debugging,0.0978,code_debugging,False,False
+gold_177,What is the live stock price of Apple right now in real time?,other,OOS,question_answering,0.1513,question_answering,False,False
+gold_178,Predict tomorrow's exact weather temperature in Tokyo.,other,OOS,other,0.0771,code_generation,True,False
+gold_179,Execute a buy order for 50 shares of Tesla stock on my brokerage account.,other,OOS,other,0.0859,content_generation,True,False
+gold_180,Render an MP4 video animation of a flying dragon.,other,OOS,content_generation,0.0984,content_generation,False,False
+gold_181,Open my garage door and unlock the front entrance.,other,OOS,other,0.0875,code_debugging,True,False
+gold_182,Give me legal representation advice for my active court lawsuit.,other,OOS,other,0.0781,summarization,True,False
+gold_183,Book a non-stop flight from New York to London for tomorrow morning.,other,OOS,other,0.0859,content_generation,True,False
+gold_184,Reserve a table for four at Mario's Italian restaurant at 7 PM.,other,OOS,other,0.0815,content_generation,True,False
+gold_185,Generate an MP3 audio voiceover with a British accent.,other,OOS,content_generation,0.1071,content_generation,False,False
+gold_186,Control my smart oven to preheat to 400 degrees Fahrenheit.,other,OOS,translation,0.1051,translation,False,False
+gold_187,Check my personal bank account balance.,other,OOS,code_debugging,0.1237,code_debugging,False,False
+gold_188,Draw a high-resolution PNG vector logo for my company.,other,OOS,other,0.0882,code_debugging,True,False
+gold_189,Call my friend Sarah on her mobile phone.,other,OOS,code_debugging,0.096,code_debugging,False,False
+gold_190,Tune my guitar string E to 329 Hz in real time.,other,OOS,other,0.0869,code_debugging,True,False
+gold_191,Track the current GPS location of my delivery package.,other,OOS,code_debugging,0.112,code_debugging,False,False
+gold_192,Set an alarm for 6:30 AM on my smartphone.,other,OOS,content_generation,0.1005,content_generation,False,False
+gold_193,Scan my local hard drive for physical disk sector corruption.,other,OOS,code_debugging,0.104,code_debugging,False,False
+gold_194,Order a pepperoni pizza to my current address.,other,OOS,code_debugging,0.1015,code_debugging,False,False
+gold_195,Synthesize a singing voice performance in C major.,other,OOS,other,0.0714,data_analysis,True,False
+gold_196,Connect to my Bluetooth headphones automatically.,other,OOS,code_debugging,0.1015,code_debugging,False,False
+gold_197,Print this document to my office HP printer.,other,OOS,other,0.0993,other,True,True
+gold_198,Calculate my exact tax refund owed by IRS for last year.,other,OOS,other,0.0812,code_debugging,True,False
+gold_199,Stream live video from my front porch security camera.,other,OOS,code_debugging,0.0969,code_debugging,False,False
+gold_200,Change my desktop wallpaper background to a ocean scene.,other,OOS,other,0.086,code_debugging,True,False
+gold_201,Reboot my local Wi-Fi router.,other,OOS,code_debugging,0.1237,code_debugging,False,False
+gold_202,Send a SMS text message to my mom.,other,OOS,rewriting,0.0946,rewriting,False,False
+gold_203,Make this better.,other,ambiguous,rewriting,0.103,rewriting,False,False
+gold_204,Process these results.,other,ambiguous,classification,0.1023,classification,False,False
+gold_205,Organize this.,other,ambiguous,code_explanation,0.0931,code_explanation,False,False
+gold_206,Fix it.,other,ambiguous,other,0.0971,other,True,True
+gold_207,Do something with this.,other,ambiguous,other,0.1505,other,True,True
+gold_208,Help me out.,other,ambiguous,other,0.1248,other,True,True
+gold_209,Handle this file.,other,ambiguous,other,0.0833,other,True,True
+gold_210,Make it right.,other,ambiguous,rewriting,0.1086,rewriting,False,False
+gold_211,Work on this.,other,ambiguous,other,0.0808,other,True,True
+gold_212,Check this.,other,ambiguous,code_explanation,0.0931,code_explanation,False,False
+gold_213,Improve it.,other,ambiguous,rewriting,0.0973,rewriting,False,False
+gold_214,Run this process.,other,ambiguous,other,0.0865,other,True,True
+gold_215,Format this.,other,ambiguous,other,0.1005,other,True,True
+gold_216,Take care of this.,other,ambiguous,summarization,0.1007,summarization,False,False
+gold_217,Update this.,other,ambiguous,code_explanation,0.0931,code_explanation,False,False
+gold_218,Do the thing.,other,ambiguous,other,0.1326,other,True,True
+gold_219,Clean this up.,other,ambiguous,code_explanation,0.0931,code_explanation,False,False
+gold_220,Deal with this data.,other,ambiguous,other,0.0814,data_analysis,True,False
+gold_221,Change it.,other,ambiguous,other,0.0744,code_debugging,True,False
+gold_222,Review this stuff.,other,ambiguous,code_explanation,0.0931,code_explanation,False,False
+gold_223,Modify.,other,ambiguous,other,0.0659,other,True,True
+gold_224,Execute task.,other,ambiguous,other,0.0659,other,True,True
+gold_225,Analyze.,other,ambiguous,data_analysis,0.113,data_analysis,False,False
+gold_226,Generate.,other,ambiguous,content_generation,0.1151,content_generation,False,False
+gold_227,Convert.,other,ambiguous,translation,0.1302,translation,False,False
+gold_228,Refactor.,other,ambiguous,other,0.0659,other,True,True
+gold_229,Sort.,other,ambiguous,other,0.08,question_answering,True,False
+gold_230,Build.,other,ambiguous,other,0.0659,other,True,True
+gold_231,Create.,other,ambiguous,content_generation,0.1022,content_generation,False,False
+gold_232,Solve.,other,ambiguous,other,0.0802,problem_solving,True,False
+gold_233,expln bubble sort to a bginner in python code plz,educational_explanation,robustness,other,0.084,code_debugging,False,False
+gold_234,wRite a pythn functon dat reverses a string,code_generation,robustness,creative_writing,0.1224,creative_writing,False,False
+gold_235,SUMMARIZE DIS TXT IN 3 BULLET POINTS FASTER,summarization,robustness,summarization,0.1206,summarization,True,True
+gold_236,why is my python code throwin IndexError error message???,code_debugging,robustness,code_debugging,0.1277,code_debugging,True,True
+gold_237,transl8 dis text to french ASAP,translation,robustness,translation,0.1287,translation,True,True
+gold_238,cmpar postgresql n mongodb differences,comparison,robustness,comparison,0.0916,comparison,True,True
+gold_239,analyze dis sales data trends n patterns,data_analysis,robustness,data_analysis,0.1442,data_analysis,True,True
+gold_240,writ a sci fi story about space exploration n robots,creative_writing,robustness,creative_writing,0.1021,creative_writing,True,True

@@ -46,6 +46,11 @@ class Settings(BaseSettings):
     # Registry key for the default tokenizer (see analysis/tokenizer.py)
     default_tokenizer: str = "tiktoken"
 
+    # ── Intent Classifier ─────────────────────────────────────────────────────
+    # Configurable selection: 'tfidf' (E1 baseline), 'semantic' (E2 SentenceTransformer), or 'hybrid' (E3)
+    intent_classifier_type: str = "tfidf"
+    intent_hybrid_alpha: float = 0.5
+
     # ── Logging ───────────────────────────────────────────────────────────────
     log_level: str = "INFO"
 

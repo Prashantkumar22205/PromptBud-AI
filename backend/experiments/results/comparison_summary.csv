@@ -1,0 +1,11 @@
+Metric,E1_TFIDF,E2_Semantic,Difference
+Overall Accuracy,70.42%,75.42%,+5.00%
+Macro Precision,75.19%,73.45%,-1.74%
+Macro Recall,75.24%,78.04%,+2.80%
+Macro F1 Score,73.75%,74.70%,+0.95%
+Clear In-Scope Accuracy,81.25%,86.61%,+5.36%
+Boundary Subset Accuracy,70.00%,68.33%,-1.67%
+Ambiguous Subset Accuracy,53.33%,96.67%,+43.34%
+OOS Rejection Accuracy,46.67%,30.00%,-16.67%
+Robustness Subset Accuracy,75.00%,62.50%,-12.50%
+Mean Inference Latency (ms),0.52 ms,9.79 ms,+9.27 ms
