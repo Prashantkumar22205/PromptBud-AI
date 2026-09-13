@@ -284,7 +284,7 @@ class HybridIntentClassifier(BaseIntentClassifier):
 
     def __init__(
         self,
-        alpha: float = 0.5,
+        alpha: float = 0.6,
         confidence_threshold: float = CONFIDENCE_THRESHOLD,
         e1_clf: Optional[TfidfLogisticIntentClassifier] = None,
         e2_clf: Optional[SemanticIntentClassifier] = None,
@@ -366,7 +366,7 @@ def _build_semantic_classifier() -> SemanticIntentClassifier:
 
 
 @lru_cache(maxsize=1)
-def _build_hybrid_classifier(alpha: float = 0.5) -> HybridIntentClassifier:
+def _build_hybrid_classifier(alpha: float = 0.6) -> HybridIntentClassifier:
     """Build and train E3 Hybrid classifier on V2 dev dataset."""
     from .training_data import load_training_data
     texts, labels = load_training_data()
@@ -394,7 +394,7 @@ def get_intent_classifier(classifier_type: Optional[str] = None) -> BaseIntentCl
     if target_type == "semantic":
         return _build_semantic_classifier()
     elif target_type == "hybrid":
-        alpha = getattr(settings, "intent_hybrid_alpha", 0.5)
+        alpha = getattr(settings, "intent_hybrid_alpha", 0.6)
         return _build_hybrid_classifier(alpha=alpha)
     else:
         return _build_tfidf_classifier()

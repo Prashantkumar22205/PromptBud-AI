@@ -48,8 +48,8 @@ class Settings(BaseSettings):
 
     # ── Intent Classifier ─────────────────────────────────────────────────────
     # Configurable selection: 'tfidf' (E1 baseline), 'semantic' (E2 SentenceTransformer), or 'hybrid' (E3)
-    intent_classifier_type: str = "tfidf"
-    intent_hybrid_alpha: float = 0.5
+    intent_classifier_type: str = "hybrid"
+    intent_hybrid_alpha: float = 0.6
 
     # ── Logging ───────────────────────────────────────────────────────────────
     log_level: str = "INFO"
