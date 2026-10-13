@@ -37,7 +37,7 @@ def test_intent_explanation():
     result = analyze_semantics("Explain how bubble sort works step by step.")
     assert result.intent.primaryIntent in ("educational_explanation", "code_explanation", "explanation")
     assert result.intent.confidence >= 0.10
-    assert result.intent.method == "tfidf_logistic_regression"
+    assert result.intent.method in ("hybrid_tfidf_semantic", "tfidf_logistic_regression", "sentence_transformer_logistic_regression")
 
 
 def test_intent_code_generation():
@@ -182,7 +182,7 @@ def test_constraints_tone_style():
 def test_constraints_negative():
     """Test negative constraint extraction."""
     result = analyze_semantics("Implement quicksort. Do not use external libraries.")
-    negative_constraints = [c for c in result.constraints if c.type in ("negative", "forbidden")]
+    negative_constraints = [c for c in result.constraints if c.type in ("negative", "forbidden", "restriction")]
     assert len(negative_constraints) >= 1
     assert "libraries" in negative_constraints[0].description.lower() or "external" in negative_constraints[0].description.lower()
 

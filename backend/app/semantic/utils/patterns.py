@@ -162,31 +162,79 @@ REQUIREMENT_VERBS: Set[str] = {
 }
 
 # ---------------------------------------------------------------------------
+# Programming language names — used by RuleConstraintExtractor to prevent
+# programming language names from being returned as natural-language constraints.
+# ---------------------------------------------------------------------------
+
+PROGRAMMING_LANGUAGE_NAMES: Set[str] = {
+    "python", "javascript", "java", "c++", "cpp", "typescript", "go", "golang",
+    "rust", "sql", "swift", "kotlin", "ruby", "php", "c#", "csharp", "bash",
+    "scala", "haskell", ".net", "dotnet", "perl", "lua", "matlab", "cobol",
+    "r", "mysql", "postgresql", "sqlite",
+}
+
+# ---------------------------------------------------------------------------
 # Constraint patterns  (type, compiled_pattern, default_confidence)
+#
+# Design notes:
+# - ORDER MATTERS: more-specific patterns precede broader ones to ensure the
+#   highest-confidence, most-specific match is deduplicated first.
+# - type="language" patterns cover ONLY human natural languages. Programming
+#   language names are handled by context.programmingLanguage (LANGUAGE_PATTERNS)
+#   and are guarded in RuleConstraintExtractor.extract() using
+#   PROGRAMMING_LANGUAGE_NAMES.
+# - type="restriction" replaces the old "forbidden" type for semantic clarity.
+#   "forbidden" is kept as an alias in the extractor description field.
 # ---------------------------------------------------------------------------
 
 CONSTRAINT_PATTERNS: List[Tuple[str, re.Pattern, float]] = [
-    # LENGTH
+    # -----------------------------------------------------------------------
+    # LENGTH — numeric and adverbial length constraints
+    # -----------------------------------------------------------------------
     ("length", re.compile(r"\b(under|within|less than|at most|no more than|maximum of?|max)\s+\d+\s*(words?|sentences?|characters?|lines?|paragraphs?)\b", re.I), 0.96),
-    ("length", re.compile(r"\bkeep\s+(it|the\s+answer|the\s+response)\s+(short|brief|concise|to\s+the\s+point)\b", re.I), 0.90),
-    ("length", re.compile(r"\b(short|brief|concise)\s+(answer|response|explanation|summary)\b", re.I), 0.85),
     ("length", re.compile(r"\bno\s+longer\s+than\s+\d+\b", re.I), 0.95),
     ("length", re.compile(r"\blimit\s+(the\s+)?(answer|response|explanation)\s+to\b", re.I), 0.93),
+    ("length", re.compile(r"\bkeep\s+(it|the\s+answer|the\s+response)\s+(short|brief|concise|to\s+the\s+point)\b", re.I), 0.90),
+    ("length", re.compile(r"\b(short|brief|concise)\s+(answer|response|explanation|summary)\b", re.I), 0.85),
+    # Brevity adverbs: "briefly", "in brief"
+    ("length", re.compile(r"\bbriefly\b", re.I), 0.88),
+    ("length", re.compile(r"\bin\s+brief\b", re.I), 0.88),
+    # Detail depth: "in detail", "in great detail", "in full detail"
+    ("length", re.compile(r"\bin\s+(great\s+|exhaustive\s+|full\s+|complete\s+)?detail\b", re.I), 0.85),
 
-    # FORMAT
+    # -----------------------------------------------------------------------
+    # FORMAT — structural / visual presentation format
+    # -----------------------------------------------------------------------
+    # Bullet lists
     ("format", re.compile(r"\b(use|in|as)\s+(a\s+)?bullet(ed)?\s*(point|list)?s?\b", re.I), 0.97),
     ("format", re.compile(r"\buse\s+(numbered|ordered)\s+(list|steps?)\b", re.I), 0.97),
-    ("format", re.compile(r"\b(use|with)\s+headings?\b", re.I), 0.95),
-    ("format", re.compile(r"\breturn\s+(as\s+)?json\b", re.I), 0.97),
-    ("format", re.compile(r"\bformat\s+(as|it|the\s+response)\b", re.I), 0.90),
-    ("format", re.compile(r"\bin\s+(json|xml|csv|markdown|html|yaml)\s*(format|form)?\b", re.I), 0.95),
+    # Table variants — specific before generic
+    ("format", re.compile(r"\bin\s+(a\s+)?tabular\s+(form|format)\b", re.I), 0.97),
+    ("format", re.compile(r"\bin\s+a\s+table\b", re.I), 0.95),
+    ("format", re.compile(r"\bas\s+a\s+table\b", re.I), 0.95),
     ("format", re.compile(r"\bprovide\s+a\s+table\b", re.I), 0.95),
-    ("format", re.compile(r"\bas\s+a\s+(list|table|chart|diagram|outline)\b", re.I), 0.88),
-    ("format", re.compile(r"\bstep.by.step\b", re.I), 0.85),
+    # Data / markup formats
+    ("format", re.compile(r"\breturn\s+(as\s+)?json\b", re.I), 0.97),
+    ("format", re.compile(r"\bin\s+(json|xml|csv|markdown|html|yaml)\s*(format|form)?\b", re.I), 0.95),
+    ("format", re.compile(r"\bformat\s+(as|it|the\s+response)\b", re.I), 0.90),
+    # Headings
+    ("format", re.compile(r"\b(use|with)\s+headings?\b", re.I), 0.95),
+    # Code only
+    ("format", re.compile(r"\bgive\s+me\s+code\s+only\b", re.I), 0.93),
+    ("format", re.compile(r"\bcode\s+only\b", re.I), 0.90),
+    # Report / outline / list / chart / diagram
+    ("format", re.compile(r"\bas\s+(a\s+)?(report|outline|list|chart|diagram)\b", re.I), 0.88),
+    ("format", re.compile(r"\bwrite\s+(a\s+)?(report|outline)\b", re.I), 0.85),
+    # Step by step (structured walkthrough format)
+    ("format", re.compile(r"\bstep[- ]by[- ]step\b", re.I), 0.87),
 
-    # STYLE
-    ("style", re.compile(r"\b(in|use)\s+simple\s+(language|terms)\b", re.I), 0.96),
-    ("style", re.compile(r"\buse\s+plain\s+language\b", re.I), 0.95),
+    # -----------------------------------------------------------------------
+    # STYLE — voice, tone, language register
+    # -----------------------------------------------------------------------
+    # "in easy language", "in simple language", "in plain words", etc.
+    ("style", re.compile(r"\bin\s+(easy|simple|plain)\s+(language|terms|words|english)\b", re.I), 0.96),
+    ("style", re.compile(r"\buse\s+(simple|plain|easy)\s+(language|terms|words)\b", re.I), 0.96),
+    ("style", re.compile(r"\bin\s+simple\s+language\b", re.I), 0.96),
     ("style", re.compile(r"\bsimple\s+(and\s+)?(clear|easy)\b", re.I), 0.88),
     ("style", re.compile(r"\bformal\s+(tone|language|style)\b", re.I), 0.92),
     ("style", re.compile(r"\binformal\s+(tone|language|style)\b", re.I), 0.92),
@@ -194,30 +242,53 @@ CONSTRAINT_PATTERNS: List[Tuple[str, re.Pattern, float]] = [
     ("style", re.compile(r"\bprofessional\s+(tone|language|style)\b", re.I), 0.90),
     ("style", re.compile(r"\bavoid\s+(jargon|technical\s+terms|complex\s+words)\b", re.I), 0.93),
 
-    # LANGUAGE
-    ("language", re.compile(r"\b(answer|respond|write|translate)\s+(in|into)\s+(hindi|french|german|spanish|chinese|japanese|arabic|portuguese|russian|italian|korean|dutch|turkish|polish|swedish|danish|norwegian|finnish|greek|hebrew|thai|vietnamese|malay|indonesian|bengali|urdu|persian|farsi)\b", re.I), 0.97),
-    ("language", re.compile(r"\b(in|into)\s+(hindi|french|german|spanish|chinese|japanese|arabic|portuguese|russian|italian|korean)\b", re.I), 0.92),
+    # -----------------------------------------------------------------------
+    # QUANTITY — numeric count constraints
+    # -----------------------------------------------------------------------
+    # "give me 5 examples", "show me 3 methods"
+    ("quantity", re.compile(r"\b(give\s+me|show\s+me)\s+(\d+|one|two|three|four|five|six|seven|eight|nine|ten)\s+(examples?|questions?|methods?|ways?|cases?|points?|options?|approaches?|steps?|reasons?|tips?|items?|solutions?|alternatives?|scenarios?|ideas?|suggestions?)\b", re.I), 0.96),
+    # "give 5 examples", "list 10 questions", "provide three methods"
+    ("quantity", re.compile(r"\b(give|list|provide|show|write|generate|create)\s+(\d+|one|two|three|four|five|six|seven|eight|nine|ten)\s+(examples?|questions?|methods?|ways?|cases?|points?|options?|approaches?|steps?|reasons?|tips?|items?|solutions?|alternatives?|scenarios?|ideas?|suggestions?)\b", re.I), 0.95),
+    # Standalone numeric count: "5 examples of X"
+    ("quantity", re.compile(r"\b(\d+)\s+(examples?|questions?|methods?|ways?|cases?|points?|options?|approaches?|steps?|reasons?|tips?|items?|solutions?)\b", re.I), 0.90),
 
-    # TECHNOLOGY
-    ("technology", re.compile(r"\b(use|using|with|in)\s+(python|javascript|java|c\+\+|typescript|go|rust|sql|r)\b", re.I), 0.88),
-    ("technology", re.compile(r"\bpython\s+(code|example|implementation|function)\b", re.I), 0.93),
-    ("technology", re.compile(r"\bjavascript\s+(code|example|implementation|function)\b", re.I), 0.93),
+    # -----------------------------------------------------------------------
+    # NATURAL LANGUAGE — output language constraints
+    # Note: Programming languages are NOT listed here.
+    # The extractor further guards using PROGRAMMING_LANGUAGE_NAMES.
+    # -----------------------------------------------------------------------
+    # Explicit verb + immediate preposition: "answer in Hindi", "respond in French"
+    ("language", re.compile(r"\b(answer|respond|write|reply|explain)\s+(in|into)\s+(hindi|french|german|spanish|chinese|japanese|arabic|portuguese|russian|italian|korean|dutch|turkish|polish|swedish|danish|norwegian|finnish|greek|hebrew|thai|vietnamese|malay|indonesian|bengali|urdu|persian|farsi|english)\b", re.I), 0.97),
+    # Translate with intervening words: "Translate this sentence into French"
+    ("language", re.compile(r"\btranslate\b.{0,40}\b(in|into)\s+(hindi|french|german|spanish|chinese|japanese|arabic|portuguese|russian|italian|korean|dutch|turkish|polish|swedish|danish|norwegian|finnish|greek|hebrew|thai|vietnamese|malay|indonesian|bengali|urdu|persian|farsi|english)\b", re.I), 0.97),
+    # Standalone "in Hindi" or "into French" — only natural languages
+    ("language", re.compile(r"\b(in|into)\s+(hindi|french|german|spanish|chinese|japanese|arabic|portuguese|russian|italian|korean|dutch|turkish|polish|swedish|danish|norwegian|finnish|greek|hebrew|thai|vietnamese|malay|indonesian|bengali|urdu|persian|farsi)\b", re.I), 0.92),
 
-    # FORBIDDEN
-    ("forbidden", re.compile(r"\bdo\s+not\s+use\s+(.{3,60}?)(?:\.|$|,|\n)", re.I), 0.96),
-    ("forbidden", re.compile(r"\bdon'?t\s+use\s+(.{3,60}?)(?:\.|$|,|\n)", re.I), 0.95),
-    ("forbidden", re.compile(r"\bwithout\s+using\s+(.{3,60}?)(?:\.|$|,|\n)", re.I), 0.93),
-    ("forbidden", re.compile(r"\bno\s+external\s+librar", re.I), 0.96),
-    ("forbidden", re.compile(r"\bdo\s+not\s+repeat\b", re.I), 0.92),
-    ("forbidden", re.compile(r"\bavoid\s+using\b", re.I), 0.90),
+    # -----------------------------------------------------------------------
+    # RESTRICTION — explicitly prohibited elements/approaches
+    # (Previously named "forbidden"; kept as "restriction" for clarity)
+    # -----------------------------------------------------------------------
+    ("restriction", re.compile(r"\bdo\s+not\s+use\s+recursion\b", re.I), 0.96),
+    ("restriction", re.compile(r"\bdo\s+not\s+use\s+(.{3,60}?)(?:\.|$|,|\n)", re.I), 0.96),
+    ("restriction", re.compile(r"\bdon'?t\s+use\s+(.{3,60}?)(?:\.|$|,|\n)", re.I), 0.95),
+    ("restriction", re.compile(r"\bwithout\s+using\s+(.{3,60}?)(?:\.|$|,|\n)", re.I), 0.93),
+    ("restriction", re.compile(r"\bno\s+external\s+librar", re.I), 0.96),
+    ("restriction", re.compile(r"\bdo\s+not\s+repeat\b", re.I), 0.92),
+    ("restriction", re.compile(r"\bavoid\s+using\b", re.I), 0.90),
+    ("restriction", re.compile(r"\bwithout\s+(changing|modifying|breaking|touching)\b", re.I), 0.90),
+    ("restriction", re.compile(r"\bno\s+(recursion|loops?|goto|global\s+variables?)\b", re.I), 0.91),
 
+    # -----------------------------------------------------------------------
     # SCOPE
+    # -----------------------------------------------------------------------
     ("scope", re.compile(r"\bonly\s+(discuss|cover|focus\s+on|explain|address)\b", re.I), 0.91),
     ("scope", re.compile(r"\bstick\s+to\b", re.I), 0.88),
     ("scope", re.compile(r"\bdo\s+not\s+(go\s+beyond|include|discuss)\b", re.I), 0.90),
     ("scope", re.compile(r"\blimit\s+(the\s+)?(scope|discussion|coverage)\s+to\b", re.I), 0.92),
 
+    # -----------------------------------------------------------------------
     # REQUIRED / MUST
+    # -----------------------------------------------------------------------
     ("required", re.compile(r"\bmust\s+include\b", re.I), 0.94),
     ("required", re.compile(r"\bmake\s+sure\b", re.I), 0.88),
     ("required", re.compile(r"\bensure\s+that\b", re.I), 0.88),

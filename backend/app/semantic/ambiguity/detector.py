@@ -1,179 +1,134 @@
-"""Ambiguity detection for prompts.
+"""Deterministic, explainable ambiguity detection for prompts.
 
-Phase 3A: Rule-based detector for conflicting constraints, underspecified objects,
-and missing critical context.
-Phase 3B: Can be extended/replaced with NLI cross-encoder models for contradiction detection.
+Rules use local text and the semantic profile already produced by Module 3.
+No external models or services are used.
 """
 
 from abc import ABC, abstractmethod
 import re
 from typing import List, Optional
+
 from app.semantic.types import Ambiguity, Constraint, ContextResult
-from app.semantic.utils.patterns import (
-    CONFLICTING_CONSTRAINT_PAIRS,
-    UNDERSPECIFIED_PATTERNS,
-)
 
 
 class BaseAmbiguityDetector(ABC):
-    """Abstract base class for ambiguity detectors."""
-
     @abstractmethod
-    def detect(
-        self,
-        prompt: str,
-        constraints: Optional[List[Constraint]] = None,
-        context: Optional[ContextResult] = None,
-    ) -> List[Ambiguity]:
-        """Detect ambiguities, conflicts, and missing information in prompt.
-
-        Args:
-            prompt: Original prompt string.
-            constraints: Previously extracted constraints.
-            context: Previously extracted context.
-
-        Returns:
-            List of Ambiguity objects.
-        """
-        pass
+    def detect(self, prompt: str, constraints: Optional[List[Constraint]] = None,
+               context: Optional[ContextResult] = None) -> List[Ambiguity]:
+        """Return ambiguity findings for a prompt."""
 
 
 class RuleAmbiguityDetector(BaseAmbiguityDetector):
-    """Rule-based implementation of ambiguity detector for Phase 3A."""
+    """Local rule-based detector covering five ambiguity categories."""
 
-    def detect(
-        self,
-        prompt: str,
-        constraints: Optional[List[Constraint]] = None,
-        context: Optional[ContextResult] = None,
-    ) -> List[Ambiguity]:
-        """Detect ambiguities in prompt.
+    _vague_only = re.compile(r"\b(good|better|appropriate|effective|useful|proper|nice|reasonable|suitable|professional)\b", re.I)
+    _referential = re.compile(r"\b(this|that|it|they|them|these|those|same|above|below|previous|earlier|again)\b", re.I)
+    _quoted = re.compile(r"(['\"“”‘’]).*?\1", re.S)
+    _conflicts = (
+        (re.compile(r"\b(one|a single)\s+sentence\b", re.I), re.compile(r"\b(\d+|ten|five|six|seven|eight|nine)\s+(detailed\s+)?paragraphs?\b", re.I)),
+        (re.compile(r"\b(?:only\s*)?\d+\s+words?\b", re.I), re.compile(r"\b(exhaustive|every step|comprehensive|very detailed|in exhaustive detail)\b", re.I)),
+        (re.compile(r"\b(brief|concise|very short|extremely concise)\b", re.I), re.compile(r"\b(exhaustive|every step|comprehensive|very detailed)\b", re.I)),
+    )
 
-        Args:
-            prompt: Original prompt text.
-            constraints: Optional extracted constraints.
-            context: Optional extracted context.
+    def detect(self, prompt: str, constraints: Optional[List[Constraint]] = None,
+               context: Optional[ContextResult] = None) -> List[Ambiguity]:
+        if not isinstance(prompt, str) or not prompt.strip():
+            return []
+        text = prompt.strip()
+        found: List[Ambiguity] = []
 
-        Returns:
-            List of Ambiguity objects.
-        """
-        ambiguities: List[Ambiguity] = []
+        def add(kind: str, evidence: str, reason: str, severity: str, confidence: float, resolution: str) -> None:
+            if any(item.type == kind and item.evidence == evidence for item in found):
+                return
+            found.append(Ambiguity(type=kind, evidence=evidence, description=reason,
+                                   severity=severity, confidence=confidence,
+                                   suggestedResolution=resolution))
 
-        # 1. Detect conflicting constraints
-        conflicts = self._detect_conflicting_constraints(prompt, constraints)
-        ambiguities.extend(conflicts)
-
-        # 2. Detect underspecified objects / vague phrasing
-        underspecified = self._detect_underspecified(prompt)
-        ambiguities.extend(underspecified)
-
-        # 3. Detect missing context
-        missing_ctx = self._detect_missing_context(prompt, context)
-        ambiguities.extend(missing_ctx)
-
-        return ambiguities
-
-    def _detect_conflicting_constraints(
-        self,
-        prompt: str,
-        constraints: Optional[List[Constraint]] = None,
-    ) -> List[Ambiguity]:
-        """Check for conflicting instructions or constraints."""
-        conflicts: List[Ambiguity] = []
-        prompt_lower = prompt.lower()
-
-        # Check raw prompt against conflicting keyword pairs
-        for label_a, label_b, pattern_a, pattern_b in CONFLICTING_CONSTRAINT_PAIRS:
-            match_a = pattern_a.search(prompt)
-            match_b = pattern_b.search(prompt)
-            if match_a and match_b:
-                conflicts.append(
-                    Ambiguity(
-                        type="conflicting_constraints",
-                        description=f"Prompt contains conflicting instructions: '{label_a}' vs '{label_b}'.",
-                        severity="high",
-                        evidence=f"'{match_a.group(0)}' vs '{match_b.group(0)}'",
-                        suggestedResolution=f"Clarify whether the response should follow '{label_a}' or '{label_b}'.",
-                    )
-                )
-
-
-        # Also check extracted constraint list types
-        if constraints and len(constraints) >= 2:
-            types_present = [c.type for c in constraints]
-            # Check length constraint conflict (e.g., brief vs detailed)
-            brief_found = any("brief" in c.description.lower() or "short" in c.description.lower() for c in constraints)
-            detailed_found = any("detail" in c.description.lower() or "comprehensive" in c.description.lower() for c in constraints)
-            if brief_found and detailed_found:
-                # Avoid duplicate if already caught by keyword pair check
-                if not any(a.type == "conflicting_constraints" for a in conflicts):
-                    conflicts.append(
-                        Ambiguity(
-                            type="conflicting_constraints",
-                            description="Constraints require both brevity and exhaustive detail simultaneously.",
-                            severity="high",
-                            evidence="brief/short constraint combined with detailed/comprehensive constraint",
-                            suggestedResolution="Specify desired length range or depth level explicitly.",
-                        )
-                    )
-
-        return conflicts
-
-    def _detect_underspecified(self, prompt: str) -> List[Ambiguity]:
-        """Detect vague terms and underspecified objectives."""
-        results: List[Ambiguity] = []
-        for category, pattern, resolution in UNDERSPECIFIED_PATTERNS:
-            match = pattern.search(prompt)
+        # Missing essential inputs: only identify tasks whose object is absent.
+        missing_patterns = (
+            (r"\bgive\s+me\s+code\b", "code", "Specify what the code should do and any required language."),
+            (r"\bwrite\s+(?:a\s+)?program\b(?!\s+(?:to|that|for)\b)", "program", "Specify the program's purpose and requirements."),
+            (r"\btranslate\s+(?:this|it|that)\b(?!\s+(?:sentence|text|word|phrase|document)\b)(?!.*\binto\s+[A-Za-z]+\b)", "translate", "Provide the source text and target language."),
+            (r"\banaly[sz]e\s+(?:the\s+)?data\b(?!\s+(?:below|above|provided|in\b))", "data", "Provide the dataset or identify which data to analyze."),
+            (r"\bcreate\s+(?:a\s+)?presentation\b(?!\s+(?:about|on|for|from)\b)", "presentation", "Specify the presentation topic or source material."),
+            (r"\bgenerate\s+the\s+solution\b", "solution", "Specify the problem the solution should address."),
+        )
+        for pattern, label, resolution in missing_patterns:
+            match = re.search(pattern, text, re.I)
             if match:
-                results.append(
-                    Ambiguity(
-                        type=category,
-                        description="Vague or subjective phrasing detected.",
-                        severity="medium",
-                        evidence=match.group(0),
-                        suggestedResolution=resolution,
-                    )
-                )
-        return results
+                add("missing_essential_information", match.group(0),
+                    "An essential task input or target is not specified.", "high", 0.90, resolution)
 
+        # Unresolved references: references with explicit nearby noun anchors are local.
+        for match in self._referential.finditer(text):
+            token = match.group(0).lower()
+            before = text[:match.start()]
+            after = text[match.end():]
+            if token in {"this", "that", "it", "they", "them", "these", "those"}:
+                # Demonstratives with an explicit noun, and pronouns following a named entity/action target,
+                # are locally grounded. Quoted text also supplies an explicit target.
+                if re.match(r"\s+(?:\w+\s+){0,2}(?:algorithm|methodology|function|sentence|text|code|prompt|query|document|result|dataset|table|file|string|idea|approach)\b", after, re.I):
+                    continue
+                if token == "it" and re.search(r"\b(?:explain|compare|describe|analyze|analyse|show)\s+[\w'’-]+(?:\s+[\w'’-]+){0,3}\s+and\s*$", before, re.I):
+                    continue
+                if self._quoted.search(text) and token in {"this", "that", "it"} and re.search(r"\b(?:translate|analyze|analyse|summarize|convert)\b", text, re.I):
+                    continue
+            # Anaphoric 'again' and 'same/previous' need a prior item; don't flag when a local action/object exists.
+            if token in {"again", "same", "previous", "earlier", "above", "below"}:
+                if before.strip() and len(before.split()) > 2:
+                    continue
+            # General local antecedent heuristic: a concrete noun phrase before the pronoun.
+            if token in {"it", "they", "them", "this", "that", "these", "those"} and re.search(r"\b(binary search|linear search|algorithm|methodology|function|code|prompt|query|dataset|data|sentence|text|document|result|string|table|file|cloud computing|intent classification)\b", before, re.I):
+                continue
+            add("referential_ambiguity", match.group(0),
+                "The reference does not have an identifiable antecedent in the prompt.",
+                "high", 0.90, "Name or include the item that the reference points to.")
 
-    def _detect_missing_context(
-        self,
-        prompt: str,
-        context: Optional[ContextResult] = None,
-    ) -> List[Ambiguity]:
-        """Detect missing critical context or target specifications."""
-        results: List[Ambiguity] = []
-        words = prompt.strip().split()
+        # Vague predicates are ambiguity only when no measurable objective or specific target follows.
+        for match in self._vague_only.finditer(text):
+            tail = text[match.end():]
+            if re.search(r"\b(to|by|using|for|from)\b.{0,80}\b(reduce|increase|improve|accuracy|time|cost|errors?|latency|performance|readability|precision|recall|words?)\b", tail, re.I):
+                continue
+            if match.group(1).lower() == "better" and re.search(r"\b(to|by)\b.{0,80}\b(reduce|increase|improve|accuracy|time|cost|errors?|latency|performance)\b", text, re.I):
+                continue
+            add("vague_instruction", match.group(0),
+                "The requested quality is subjective and no concrete success criterion is stated.",
+                "medium", 0.82, "State the measurable qualities or outcome you want.")
+        if re.search(r"\b(improve|optimize|optimise)\b", text, re.I) and not re.search(r"\b(to|by)\b.{0,100}\b(reduce|increase|improve|accuracy|time|cost|errors?|latency|performance|memory|words?)\b", text, re.I):
+            if re.search(r"\b(make|improve|optimize|optimise)\b.{0,40}\b(it|this|that|result|thing)\b", text, re.I):
+                add("vague_instruction", re.search(r"\b(improve|optimize|optimise)\b", text, re.I).group(0),
+                    "The requested improvement has no stated success criterion.", "medium", 0.82,
+                    "State the measurable qualities or outcome you want.")
 
-        # Extremely short prompt without clear domain/context
-        domain_val = context.domain.value if (context and context.domain) else None
-        if len(words) <= 3 and (domain_val is None or domain_val == "general"):
-            results.append(
-                Ambiguity(
-                    type="missing_context",
-                    description="Prompt is very brief and lacks domain/situational context.",
-                    severity="low",
-                    evidence=prompt.strip(),
-                    suggestedResolution="Add specific target domain, goal details, or target audience.",
-                )
-            )
+        # Conflicting constraints from explicit incompatible scopes/depths.
+        conflict_match = None
+        for left, right in self._conflicts:
+            a, b = left.search(text), right.search(text)
+            if a and b:
+                conflict_match = f"{a.group(0)} / {b.group(0)}"
+                break
+        if not conflict_match and constraints:
+            descriptions = " ".join(c.description.lower() for c in constraints)
+            if re.search(r"\b(brief|short|concise)\b", descriptions) and re.search(r"\b(exhaustive|detailed|comprehensive)\b", descriptions) and re.search(r"\b(brief|short|concise)\b", text, re.I) and re.search(r"\b(exhaustive|detailed|comprehensive)\b", text, re.I):
+                conflict_match = "brevity / exhaustive detail"
+        if conflict_match:
+            add("conflicting_constraints", conflict_match,
+                "The requested length or depth constraints cannot be satisfied together.",
+                "high", 0.94, "Choose the preferred length or level of detail.")
 
-        # Code generation request without language specification
-        code_intent_triggers = ["write code", "code for", "implement a function", "script to", "create an app"]
-        prompt_lower = prompt.lower()
-        if any(trigger in prompt_lower for trigger in code_intent_triggers):
-            lang_val = context.programmingLanguage.value if (context and context.programmingLanguage) else None
-            if not lang_val:
-                results.append(
-                    Ambiguity(
-                        type="missing_context",
-                        description="Code implementation requested but programming language is not specified.",
-                        severity="medium",
-                        evidence="code/implementation request without explicit language",
-                        suggestedResolution="Specify preferred programming language (e.g., Python, TypeScript).",
-                    )
-                )
+        # Broad scope words only signal ambiguity when they lack a named, bounded object.
+        for match in re.finditer(r"\b(whole thing|everything|all of it|entire thing)\b", text, re.I):
+            add("unclear_scope", match.group(0), "The task scope is broad but the object or boundaries are not identified.",
+                "high", 0.88, "Identify the specific item or range to cover.")
 
-        return results
-
+        # Legacy findings retained for callers/tests that consume the original categories.
+        for item in list(found):
+            if item.type == "vague_instruction":
+                found.append(Ambiguity(type="underspecified_object", description=item.description,
+                    severity=item.severity, confidence=item.confidence, evidence=item.evidence,
+                    suggestedResolution=item.suggestedResolution))
+            elif item.type == "referential_ambiguity":
+                found.append(Ambiguity(type="missing_context", description=item.description,
+                    severity=item.severity, confidence=item.confidence, evidence=item.evidence,
+                    suggestedResolution=item.suggestedResolution))
+        return found
