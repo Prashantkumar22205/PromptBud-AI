@@ -13,6 +13,7 @@ from __future__ import annotations
 
 from functools import lru_cache
 
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -50,6 +51,11 @@ class Settings(BaseSettings):
     # Configurable selection: 'tfidf' (E1 baseline), 'semantic' (E2 SentenceTransformer), or 'hybrid' (E3)
     intent_classifier_type: str = "hybrid"
     intent_hybrid_alpha: float = 0.6
+
+    # ── Module 4: Prompt optimization generation ────────────────────────────
+    optimization_temperature: float = Field(default=0.2, ge=0.0, le=2.0)
+    optimization_max_output_tokens: int = Field(default=2048, gt=0)
+    optimization_timeout_seconds: float = Field(default=60.0, gt=0)
 
     # ── Logging ───────────────────────────────────────────────────────────────
     log_level: str = "INFO"

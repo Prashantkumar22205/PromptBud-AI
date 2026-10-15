@@ -21,6 +21,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from app.api.routes.analyze import router as analyze_router
+from app.api.routes.optimization import router as optimization_router
 from app.api.routes.semantic import router as semantic_router
 from app.core.config import settings
 
@@ -61,11 +62,12 @@ app = FastAPI(
     title=settings.app_name,
     version=settings.app_version,
     description=(
-        "Deterministic / local prompt analysis API for PromptOptAI.  "
+        "Prompt analysis and optimization API for PromptOptAI.  "
         "Module 1: User Prompt ingestion.  "
         "Module 2: Local Prompt Analysis (token count, text stats, repetition detection, structural analysis).  "
         "Module 3: Semantic Analysis (intent, context, requirements, constraints, ambiguity).  "
-        "No LLM API is called."
+        "Module 4: LLM-based prompt optimization in DIRECT and GUIDED experimental modes. "
+        "Modules 1–3 do not call an LLM."
     ),
     docs_url="/docs",
     redoc_url="/redoc",
@@ -123,4 +125,5 @@ async def health_check() -> dict:
 
 app.include_router(analyze_router, prefix="/api", tags=["Analysis"])
 app.include_router(semantic_router, prefix="/api", tags=["Semantic Analysis"])
+app.include_router(optimization_router, prefix="/api", tags=["Prompt Optimization"])
 
