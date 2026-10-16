@@ -57,6 +57,9 @@ class Settings(BaseSettings):
     optimization_max_output_tokens: int = Field(default=2048, gt=0)
     optimization_timeout_seconds: float = Field(default=60.0, gt=0)
 
+    # ── Module 5: Prompt evaluation ─────────────────────────────────────────
+    evaluation_embedding_model: str = "all-MiniLM-L6-v2"
+
     # ── Logging ───────────────────────────────────────────────────────────────
     log_level: str = "INFO"
 
