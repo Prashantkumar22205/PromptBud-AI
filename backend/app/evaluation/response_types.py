@@ -15,6 +15,7 @@ CostStatus = Literal["provided", "estimated", "unavailable"]
 
 class ResponseEvaluationRequest(BaseModel):
     original_prompt: str = Field(..., min_length=1)
+    evaluation_prompt: str | None = Field(None, min_length=1)
     response: str = Field(..., min_length=1)
     variant: ResponseVariant
     target_model: str = Field(..., min_length=1)
@@ -33,6 +34,13 @@ class ResponseEvaluationRequest(BaseModel):
             raise ValueError("Value cannot be empty or whitespace only.")
         return value
 
+    @field_validator("evaluation_prompt")
+    @classmethod
+    def evaluation_prompt_must_not_be_whitespace(cls, value: str | None) -> str | None:
+        if value is not None and not value.strip():
+            raise ValueError("Value cannot be empty or whitespace only.")
+        return value
+
     @field_validator("target_model")
     @classmethod
     def strip_target_model(cls, value: str) -> str:
@@ -40,6 +48,8 @@ class ResponseEvaluationRequest(BaseModel):
 
     @model_validator(mode="after")
     def token_total_must_be_consistent(self) -> "ResponseEvaluationRequest":
+        if self.evaluation_prompt is None:
+            self.evaluation_prompt = self.original_prompt
         if (
             self.total_tokens is not None
             and self.input_tokens is not None
@@ -118,6 +128,7 @@ class ResponseEvaluatorInfo(BaseModel):
 class ResponseEvaluationResult(BaseModel):
     evaluation_id: UUID
     original_prompt: str
+    evaluation_prompt: str
     response: str
     variant: ResponseVariant
     target_model: str

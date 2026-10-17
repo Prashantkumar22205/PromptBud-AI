@@ -59,7 +59,9 @@ class ResponseEvaluator:
             )
 
         checks = self._instruction_check_calculator(request.original_prompt, request.response)
-        messages = build_response_evaluator_messages(request.original_prompt, request.response, checks)
+        messages = build_response_evaluator_messages(
+            request.original_prompt, request.evaluation_prompt or request.original_prompt, request.response, checks
+        )
         started = perf_counter()
         try:
             completion = await self._llm_client.complete(
@@ -91,6 +93,7 @@ class ResponseEvaluator:
         return ResponseEvaluationResult(
             evaluation_id=uuid4(),
             original_prompt=request.original_prompt,
+            evaluation_prompt=request.evaluation_prompt or request.original_prompt,
             response=request.response,
             variant=request.variant,
             target_model=request.target_model,

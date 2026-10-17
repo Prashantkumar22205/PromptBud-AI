@@ -3,7 +3,6 @@ __pycache__/
 *.py[cod]
 *.pyo
 *.pyd
-.Python
 *.egg-info/
 dist/
 build/
@@ -13,22 +12,28 @@ build/
 venv/
 .venv/
 env/
-.env/
+backend/venv/
+backend/venv_pre_rebuild/
 
-# Environment
+# Local Python packages
+backend/.python-packages/
+
+# Environment variables / secrets
 .env
+.env.*
+!.env.example
 
-# pytest
+# pytest / coverage
 .pytest_cache/
 .coverage
 htmlcov/
 *.log
 
-# mypy / type checkers
+# Type checkers
 .mypy_cache/
 .pytype/
 
-# IDEs
+# IDE
 .vscode/
 .idea/
 *.swp

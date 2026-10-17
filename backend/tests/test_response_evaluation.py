@@ -77,6 +77,7 @@ async def test_valid_request_runs_independent_evaluator():
     client = FakeJudgeClient()
     result = await ResponseEvaluator(llm_client=client, config=config(), instruction_check_calculator=fixed_checks).evaluate(request())
     assert result.variant == "original"
+    assert result.evaluation_prompt == result.original_prompt
     assert result.evaluator.model == "judge/independent-model"
     assert result.evaluator.method == "independent_llm_judge"
     assert result.metrics.response_quality.relevance.score == 4
@@ -273,22 +274,42 @@ async def test_evaluator_prompt_excludes_variant_target_model_and_optimizer_cont
         llm_client=client, config=config(), instruction_check_calculator=fixed_checks
     ).evaluate(
         request(
-            original_prompt="Explain binary search.",
-            response="Binary search repeatedly halves a sorted search interval.",
+            original_prompt="ORIGINAL_TASK_SENTINEL",
+            evaluation_prompt="PROMPT_SENT_TO_TARGET_SENTINEL",
+            response="TARGET_RESPONSE_SENTINEL",
             variant="guided",
             target_model="TARGET_MODEL_SECRET",
             generation_temperature=0.8,
             max_output_tokens=777,
+            optimizer_model="OPTIMIZER_MODEL_SECRET",
+            semantic_profile="MODULE3_PROFILE_SECRET",
+            module5a_metrics="MODULE5A_RESULTS_SECRET",
+            experiment_id="EXPERIMENT_METADATA_SECRET",
         )
     )
     call = client.calls[0]
     assert call["model"] == "judge/independent-model"
     user_content = call["messages"][1]["content"]
-    assert "Explain binary search." in user_content
-    assert "Binary search repeatedly halves" in user_content
-    for forbidden in ("guided", "direct", "TARGET_MODEL_SECRET", "optimizer_model", "Module 3", "reasoning"):
-        assert forbidden not in user_content.casefold()
-    assert '"variant"' not in user_content.casefold()
+    all_messages = json.dumps(call["messages"], ensure_ascii=False).casefold()
+    for included in (
+        "ORIGINAL_TASK_SENTINEL",
+        "PROMPT_SENT_TO_TARGET_SENTINEL",
+        "TARGET_RESPONSE_SENTINEL",
+    ):
+        assert included in user_content
+    for forbidden in (
+        "direct",
+        "guided",
+        '"variant"',
+        "TARGET_MODEL_SECRET",
+        "OPTIMIZER_MODEL_SECRET",
+        "MODULE3_PROFILE_SECRET",
+        "MODULE5A_RESULTS_SECRET",
+        "EXPERIMENT_METADATA_SECRET",
+        "generation_temperature",
+        "max_output_tokens",
+    ):
+        assert forbidden not in all_messages
     assert "Do not reward or penalize the response based on its source." in call["messages"][0]["content"]
 
 
@@ -296,13 +317,18 @@ async def test_evaluator_prompt_excludes_variant_target_model_and_optimizer_cont
 async def test_original_direct_guided_variants_share_judge_configuration_and_prompt_policy():
     client = FakeJudgeClient()
     evaluator = ResponseEvaluator(llm_client=client, config=config(), instruction_check_calculator=fixed_checks)
-    for variant, response in (
-        ("original", "Response O"),
-        ("direct", "Response D"),
-        ("guided", "Response G"),
+    for variant, evaluation_prompt, response in (
+        ("original", "Same research prompt", "Response O"),
+        ("direct", "Direct optimized research prompt", "Response D"),
+        ("guided", "Guided optimized research prompt", "Response G"),
     ):
         await evaluator.evaluate(
-            request(original_prompt="Same research prompt", response=response, variant=variant)
+            request(
+                original_prompt="Same research prompt",
+                evaluation_prompt=evaluation_prompt,
+                response=response,
+                variant=variant,
+            )
         )
 
     assert len(client.calls) == 3
@@ -314,18 +340,60 @@ async def test_original_direct_guided_variants_share_judge_configuration_and_pro
     assert len(set(system_prompts)) == 1
     user_prompts = [call["messages"][1]["content"] for call in client.calls]
     def extract_sections(prompt: str):
-        original, response = prompt.split(
+        original, evaluation_prompt = prompt.split(
+            "\n\nPROMPT SENT TO TARGET MODEL (JSON string):\n", maxsplit=1
+        )
+        evaluation_prompt, response = evaluation_prompt.split(
             "\n\nRESPONSE TO EVALUATE (JSON string):\n", maxsplit=1
         )
         response, checks = response.split("\n\nOPTIONAL OBJECTIVE CHECKS (JSON):\n", maxsplit=1)
-        original = original.split("ORIGINAL USER PROMPT (JSON string):\n", maxsplit=1)[1]
-        return json.loads(original), json.loads(response), json.loads(checks)
+        original = original.split("ORIGINAL USER TASK (JSON string):\n", maxsplit=1)[1]
+        return json.loads(original), json.loads(evaluation_prompt), json.loads(response), json.loads(checks)
 
     sections = [extract_sections(prompt) for prompt in user_prompts]
     assert [section[0] for section in sections] == ["Same research prompt"] * 3
-    assert [section[1] for section in sections] == ["Response O", "Response D", "Response G"]
-    assert sections[0][2] == sections[1][2] == sections[2][2]
+    assert [section[1] for section in sections] == [
+        "Same research prompt",
+        "Direct optimized research prompt",
+        "Guided optimized research prompt",
+    ]
+    assert [section[2] for section in sections] == ["Response O", "Response D", "Response G"]
+    assert sections[0][3] == sections[1][3] == sections[2][3]
     assert all('"variant"' not in prompt.casefold() for prompt in user_prompts)
+
+
+@pytest.mark.asyncio
+async def test_evaluator_still_returns_all_quality_and_execution_metrics():
+    settings = config(
+        pricing=json.dumps(
+            {"target/model-v1": {"input_price_per_million": 2.0, "output_price_per_million": 4.0}}
+        )
+    )
+    result = await ResponseEvaluator(
+        llm_client=FakeJudgeClient(),
+        config=settings,
+        instruction_check_calculator=calculate_deterministic_instruction_checks,
+    ).evaluate(
+        request(
+            original_prompt="Keep the response under 10 words.",
+            evaluation_prompt="Be concise: under 10 words.",
+            response="A concise answer uses only a few words.",
+            target_model="target/model-v1",
+            input_tokens=100,
+            output_tokens=25,
+            total_tokens=125,
+            latency_ms=123.5,
+        )
+    )
+    assert set(result.metrics.response_quality.model_dump()) == {
+        "relevance", "completeness", "correctness", "instruction_following"
+    }
+    assert result.metrics.token_usage.model_dump() == {
+        "input_tokens": 100, "output_tokens": 25, "total_tokens": 125
+    }
+    assert result.metrics.target_model_latency_ms == 123.5
+    assert result.metrics.cost.estimated_cost == pytest.approx(0.0003)
+    assert result.metrics.deterministic_instruction_checks
 
 
 @pytest.mark.asyncio
@@ -356,6 +424,7 @@ async def test_response_evaluation_api_returns_structured_result(monkeypatch):
     assert response.status_code == 200
     body = response.json()
     assert body["variant"] == "direct"
+    assert body["evaluation_prompt"] == "Explain binary search."
     assert body["metrics"]["token_usage"] == {"input_tokens": 10, "output_tokens": 20, "total_tokens": 30}
     assert body["metrics"]["target_model_latency_ms"] == 100
     assert body["generation_temperature"] == 0.2

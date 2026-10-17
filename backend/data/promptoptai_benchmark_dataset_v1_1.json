@@ -1,0 +1,1376 @@
+{
+  "dataset_name": "PromptOptAI Benchmark Dataset v1.1",
+  "version": "1.1",
+  "total_prompts": 150,
+  "development_prompts": 30,
+  "frozen_evaluation_prompts": 120,
+  "categories": {
+    "educational_explanation": 15,
+    "question_answering": 15,
+    "code_generation": 15,
+    "code_debugging": 15,
+    "summarization": 15,
+    "rewriting": 15,
+    "comparison": 15,
+    "data_analysis": 15,
+    "creative_content_generation": 15,
+    "problem_solving": 15
+  },
+  "records": [
+    {
+      "prompt_id": "POAI-001",
+      "category": "educational_explanation",
+      "category_index": 1,
+      "split": "development",
+      "prompt": "Explain how binary search works to a beginner using a simple example.",
+      "length_band": "short",
+      "word_count": 12
+    },
+    {
+      "prompt_id": "POAI-002",
+      "category": "educational_explanation",
+      "category_index": 2,
+      "split": "development",
+      "prompt": "Explain the difference between processes and threads in operating systems with a practical example.",
+      "length_band": "short",
+      "word_count": 14
+    },
+    {
+      "prompt_id": "POAI-003",
+      "category": "educational_explanation",
+      "category_index": 3,
+      "split": "development",
+      "prompt": "Teach database normalization from 1NF to 3NF using a small example.",
+      "length_band": "short",
+      "word_count": 11
+    },
+    {
+      "prompt_id": "POAI-004",
+      "category": "educational_explanation",
+      "category_index": 4,
+      "split": "frozen_evaluation",
+      "prompt": "Explain the TCP three-way handshake step by step for a student preparing for an interview. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result. Explain the concept from first principles, include a small example, describe the important steps or components, mention a common misconception, and finish with the key point a student should remember for an interview.",
+      "length_band": "long",
+      "word_count": 84
+    },
+    {
+      "prompt_id": "POAI-005",
+      "category": "educational_explanation",
+      "category_index": 5,
+      "split": "frozen_evaluation",
+      "prompt": "Explain recursion in programming and show how the call stack changes during execution. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result. Explain the concept from first principles, include a small example, describe the important steps or components, mention a common misconception, and finish with the key point a student should remember for an interview.",
+      "length_band": "long",
+      "word_count": 82
+    },
+    {
+      "prompt_id": "POAI-006",
+      "category": "educational_explanation",
+      "category_index": 6,
+      "split": "frozen_evaluation",
+      "prompt": "Explain how a hash table handles collisions and compare chaining with open addressing. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result. Explain the concept from first principles, include a small example, describe the important steps or components, mention a common misconception, and finish with the key point a student should remember for an interview.",
+      "length_band": "long",
+      "word_count": 82
+    },
+    {
+      "prompt_id": "POAI-007",
+      "category": "educational_explanation",
+      "category_index": 7,
+      "split": "frozen_evaluation",
+      "prompt": "Explain the difference between stack and heap memory with examples.",
+      "length_band": "short",
+      "word_count": 10
+    },
+    {
+      "prompt_id": "POAI-008",
+      "category": "educational_explanation",
+      "category_index": 8,
+      "split": "frozen_evaluation",
+      "prompt": "Explain how DNS resolution works when a user enters a website address. Include a simple example and briefly explain the main idea, practical relevance, and one common mistake a student should avoid.",
+      "length_band": "medium",
+      "word_count": 32
+    },
+    {
+      "prompt_id": "POAI-009",
+      "category": "educational_explanation",
+      "category_index": 9,
+      "split": "frozen_evaluation",
+      "prompt": "Explain polymorphism in object-oriented programming using an analogy and a Java example. Include a simple example and briefly explain the main idea, practical relevance, and one common mistake a student should avoid.",
+      "length_band": "medium",
+      "word_count": 32
+    },
+    {
+      "prompt_id": "POAI-010",
+      "category": "educational_explanation",
+      "category_index": 10,
+      "split": "frozen_evaluation",
+      "prompt": "Explain the difference between HTTP and HTTPS and describe the role of TLS. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result. Explain the concept from first principles, include a small example, describe the important steps or components, mention a common misconception, and finish with the key point a student should remember for an interview.",
+      "length_band": "long",
+      "word_count": 82
+    },
+    {
+      "prompt_id": "POAI-011",
+      "category": "educational_explanation",
+      "category_index": 11,
+      "split": "frozen_evaluation",
+      "prompt": "Explain Big O notation and compare linear search with binary search. Include a simple example and briefly explain the main idea, practical relevance, and one common mistake a student should avoid.",
+      "length_band": "medium",
+      "word_count": 31
+    },
+    {
+      "prompt_id": "POAI-012",
+      "category": "educational_explanation",
+      "category_index": 12,
+      "split": "frozen_evaluation",
+      "prompt": "Explain deadlock in operating systems and describe its four necessary conditions. Include a simple example and briefly explain the main idea, practical relevance, and one common mistake a student should avoid.",
+      "length_band": "medium",
+      "word_count": 31
+    },
+    {
+      "prompt_id": "POAI-013",
+      "category": "educational_explanation",
+      "category_index": 13,
+      "split": "frozen_evaluation",
+      "prompt": "Explain how a compiler converts source code into an executable program.",
+      "length_band": "short",
+      "word_count": 11
+    },
+    {
+      "prompt_id": "POAI-014",
+      "category": "educational_explanation",
+      "category_index": 14,
+      "split": "frozen_evaluation",
+      "prompt": "Explain synchronous and asynchronous JavaScript with a simple example.",
+      "length_band": "short",
+      "word_count": 9
+    },
+    {
+      "prompt_id": "POAI-015",
+      "category": "educational_explanation",
+      "category_index": 15,
+      "split": "frozen_evaluation",
+      "prompt": "Explain normalization and denormalization in databases and when each is useful.",
+      "length_band": "short",
+      "word_count": 11
+    },
+    {
+      "prompt_id": "POAI-016",
+      "category": "question_answering",
+      "category_index": 1,
+      "split": "development",
+      "prompt": "Explain the difference between a primary key and a unique key in SQL. Cover how each enforces uniqueness, whether NULL values are allowed, how each behaves when used across multiple columns, and when a database designer would normally choose one over the other. Present the answer as a clear comparison with a small SQL example for each.",
+      "length_band": "medium",
+      "word_count": 57
+    },
+    {
+      "prompt_id": "POAI-017",
+      "category": "question_answering",
+      "category_index": 2,
+      "split": "development",
+      "prompt": "Compare TCP and UDP for a software engineering student. Explain connection establishment, reliability, ordering, flow and congestion control, overhead, latency, and common application use cases. Include at least three examples of protocols or applications that typically use each transport protocol, and finish with guidance on when an engineer should prefer one over the other.",
+      "length_band": "medium",
+      "word_count": 54
+    },
+    {
+      "prompt_id": "POAI-018",
+      "category": "question_answering",
+      "category_index": 3,
+      "split": "development",
+      "prompt": "Explain JavaScript closures to a beginner who understands variables, functions, and scope but has not encountered closures before. Start with an intuitive explanation, then show a small code example, explain what happens to the outer variable after the outer function returns, and give one practical use case such as data privacy or a counter. Avoid assuming knowledge of advanced JavaScript concepts.",
+      "length_band": "medium",
+      "word_count": 61
+    },
+    {
+      "prompt_id": "POAI-019",
+      "category": "question_answering",
+      "category_index": 4,
+      "split": "frozen_evaluation",
+      "prompt": "Explain the ACID properties of database transactions in a way that is useful for an interview. Define atomicity, consistency, isolation, and durability, give a simple real-world or database example for each property, and explain why each property matters when multiple users are modifying data. Keep the examples technically accurate and distinguish ACID from general database reliability. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 92
+    },
+    {
+      "prompt_id": "POAI-020",
+      "category": "question_answering",
+      "category_index": 5,
+      "split": "frozen_evaluation",
+      "prompt": "Explain why binary search requires a sorted search space. Describe the decision made after examining the middle element, explain how sorted order allows half of the search space to be discarded, and show what can go wrong when the input is not sorted. Include a small numerical example and state the expected time complexity.",
+      "length_band": "medium",
+      "word_count": 54
+    },
+    {
+      "prompt_id": "POAI-021",
+      "category": "question_answering",
+      "category_index": 6,
+      "split": "frozen_evaluation",
+      "prompt": "Explain the difference between == and === in JavaScript for someone preparing for a frontend interview. Cover type coercion, give several examples where the two operators produce different results, explain why === is generally preferred in application code, and mention any situation where == may still be encountered. Keep the examples simple and avoid unrelated JavaScript features.",
+      "length_band": "medium",
+      "word_count": 53
+    },
+    {
+      "prompt_id": "POAI-022",
+      "category": "question_answering",
+      "category_index": 7,
+      "split": "frozen_evaluation",
+      "prompt": "Explain virtual memory in operating systems for a student preparing for an OS interview. Describe the relationship between virtual and physical memory, pages and page tables, why programs can use an address space larger than available RAM, and what happens during a page fault. Also explain one advantage and one performance cost of virtual memory. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 91
+    },
+    {
+      "prompt_id": "POAI-023",
+      "category": "question_answering",
+      "category_index": 8,
+      "split": "frozen_evaluation",
+      "prompt": "Explain database indexes and how they improve query performance. Describe the basic idea of an index structure, explain why an index can reduce the amount of data the database must inspect, and discuss why indexes are not always beneficial. Include a simple SQL example and mention the trade-offs involving storage and INSERT, UPDATE, or DELETE performance. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 92
+    },
+    {
+      "prompt_id": "POAI-024",
+      "category": "question_answering",
+      "category_index": 9,
+      "split": "frozen_evaluation",
+      "prompt": "Explain the purpose of a foreign key in a relational database. Show how a foreign key creates a relationship between two tables, explain referential integrity, and provide a small SQL example involving customers and orders. Also discuss what can happen when an application attempts to insert a child row that references a non-existent parent row. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 91
+    },
+    {
+      "prompt_id": "POAI-025",
+      "category": "question_answering",
+      "category_index": 10,
+      "split": "frozen_evaluation",
+      "prompt": "Explain authentication and authorization and clearly distinguish them for a web application developer. Define both concepts, give a login example, explain what happens after a user successfully authenticates, and show how role-based authorization might restrict access to an administrative endpoint. Include a short example using an API scenario.",
+      "length_band": "medium",
+      "word_count": 48
+    },
+    {
+      "prompt_id": "POAI-026",
+      "category": "question_answering",
+      "category_index": 11,
+      "split": "frozen_evaluation",
+      "prompt": "Why is a hash table generally efficient for key-based lookup?",
+      "length_band": "short",
+      "word_count": 10
+    },
+    {
+      "prompt_id": "POAI-027",
+      "category": "question_answering",
+      "category_index": 12,
+      "split": "frozen_evaluation",
+      "prompt": "Compare IPv4 and IPv6 from the perspective of a computer networking student. Explain address size, notation, address availability, header differences at a high level, configuration or discovery, and why IPv6 was introduced. Include example addresses for both versions and explain whether IPv6 completely eliminates the need for techniques such as NAT.",
+      "length_band": "medium",
+      "word_count": 51
+    },
+    {
+      "prompt_id": "POAI-028",
+      "category": "question_answering",
+      "category_index": 13,
+      "split": "frozen_evaluation",
+      "prompt": "What is garbage collection, and how can it affect application performance? Give a simple example and distinguish memory leaks from normal garbage collection.",
+      "length_band": "short",
+      "word_count": 23
+    },
+    {
+      "prompt_id": "POAI-029",
+      "category": "question_answering",
+      "category_index": 14,
+      "split": "frozen_evaluation",
+      "prompt": "What is an API, and how is REST commonly used for web services? Give a simple example using an HTTP endpoint.",
+      "length_band": "short",
+      "word_count": 21
+    },
+    {
+      "prompt_id": "POAI-030",
+      "category": "question_answering",
+      "category_index": 15,
+      "split": "frozen_evaluation",
+      "prompt": "What is the difference between compilation and interpretation? Give a simple example and explain the main performance difference.",
+      "length_band": "short",
+      "word_count": 18
+    },
+    {
+      "prompt_id": "POAI-031",
+      "category": "code_generation",
+      "category_index": 1,
+      "split": "development",
+      "prompt": "Write a C++ function to find the second largest element in an array without sorting it.",
+      "length_band": "short",
+      "word_count": 16
+    },
+    {
+      "prompt_id": "POAI-032",
+      "category": "code_generation",
+      "category_index": 2,
+      "split": "development",
+      "prompt": "Write a JavaScript function that checks whether a string is a palindrome and explain the approach.",
+      "length_band": "short",
+      "word_count": 16
+    },
+    {
+      "prompt_id": "POAI-033",
+      "category": "code_generation",
+      "category_index": 3,
+      "split": "development",
+      "prompt": "Implement a queue using two stacks in C++.",
+      "length_band": "short",
+      "word_count": 8
+    },
+    {
+      "prompt_id": "POAI-034",
+      "category": "code_generation",
+      "category_index": 4,
+      "split": "frozen_evaluation",
+      "prompt": "Write a Python program that counts the frequency of each word in a paragraph. Treat words case-insensitively, ignore common punctuation around words, and return the frequencies in a dictionary. Then show a short example input and output. Use standard Python libraries only, explain the time complexity, and do not sort the result unless sorting is necessary for the counting logic. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 96
+    },
+    {
+      "prompt_id": "POAI-035",
+      "category": "code_generation",
+      "category_index": 5,
+      "split": "frozen_evaluation",
+      "prompt": "Create a JavaScript function that removes duplicate values from an array while preserving the order of their first appearance. The function should work with numbers and strings, should not modify the original array, and should return a new array. Include an example with repeated values and briefly explain the data structure used and its expected time and space complexity.",
+      "length_band": "medium",
+      "word_count": 59
+    },
+    {
+      "prompt_id": "POAI-036",
+      "category": "code_generation",
+      "category_index": 6,
+      "split": "frozen_evaluation",
+      "prompt": "Write a C++ implementation of binary search using an iterative approach.",
+      "length_band": "short",
+      "word_count": 11
+    },
+    {
+      "prompt_id": "POAI-037",
+      "category": "code_generation",
+      "category_index": 7,
+      "split": "frozen_evaluation",
+      "prompt": "Implement a stack using a singly linked list in C++.",
+      "length_band": "short",
+      "word_count": 10
+    },
+    {
+      "prompt_id": "POAI-038",
+      "category": "code_generation",
+      "category_index": 8,
+      "split": "frozen_evaluation",
+      "prompt": "Write a Python function that merges two sorted arrays into one sorted array. Assume both input arrays are sorted in ascending order and may have duplicate values. Do not use a built-in sorting function on the combined result. Return a new array, preserve duplicates, provide a small example, and explain why the two-pointer approach runs in linear time relative to the total number of input elements. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 102
+    },
+    {
+      "prompt_id": "POAI-039",
+      "category": "code_generation",
+      "category_index": 9,
+      "split": "frozen_evaluation",
+      "prompt": "Create a JavaScript function that finds the first non-repeating character in a string. Treat uppercase and lowercase letters as different characters, preserve the original character in the returned result, and return null if every character repeats. Include an example, avoid nested loops where a frequency map can be used, and briefly explain the time and space complexity.",
+      "length_band": "medium",
+      "word_count": 57
+    },
+    {
+      "prompt_id": "POAI-040",
+      "category": "code_generation",
+      "category_index": 10,
+      "split": "frozen_evaluation",
+      "prompt": "Write a Java program that checks whether parentheses in an expression are balanced using a stack.",
+      "length_band": "short",
+      "word_count": 16
+    },
+    {
+      "prompt_id": "POAI-041",
+      "category": "code_generation",
+      "category_index": 11,
+      "split": "frozen_evaluation",
+      "prompt": "Implement breadth-first search for an unweighted graph in C++ and return the traversal order from a given starting vertex. Represent the graph with an adjacency list, prevent already visited vertices from being processed repeatedly, and use a queue for traversal. Include a small graph example, explain why BFS finds shortest paths in an unweighted graph, and state the time and space complexity. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 98
+    },
+    {
+      "prompt_id": "POAI-042",
+      "category": "code_generation",
+      "category_index": 12,
+      "split": "frozen_evaluation",
+      "prompt": "Write a Python function that returns the top K most frequent elements in a list. If two elements have the same frequency, use their natural value order as a deterministic tie-breaker. Explain the approach, handle cases where K is larger than the number of distinct elements, provide an example, and state the time and space complexity. Avoid modifying the input list. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 97
+    },
+    {
+      "prompt_id": "POAI-043",
+      "category": "code_generation",
+      "category_index": 13,
+      "split": "frozen_evaluation",
+      "prompt": "Create a JavaScript debounce function and show a small usage example.",
+      "length_band": "short",
+      "word_count": 11
+    },
+    {
+      "prompt_id": "POAI-044",
+      "category": "code_generation",
+      "category_index": 14,
+      "split": "frozen_evaluation",
+      "prompt": "Write a C++ function to detect whether a singly linked list contains a cycle. Use an approach that does not require storing every visited node in a hash set, return a boolean result, and explain why the algorithm works. Include a small example of a cyclic and a non-cyclic list and state the time and extra space complexity.",
+      "length_band": "medium",
+      "word_count": 58
+    },
+    {
+      "prompt_id": "POAI-045",
+      "category": "code_generation",
+      "category_index": 15,
+      "split": "frozen_evaluation",
+      "prompt": "Implement a REST API endpoint in Node.js and Express that returns a list of users as JSON. Use a GET route such as /users, return an appropriate HTTP status code, and keep the example self-contained with an in-memory array rather than a database. Include sample JSON output and briefly explain how a frontend client would call the endpoint.",
+      "length_band": "medium",
+      "word_count": 59
+    },
+    {
+      "prompt_id": "POAI-046",
+      "category": "code_debugging",
+      "category_index": 1,
+      "split": "development",
+      "prompt": "Debug this C++ binary search logic: it sometimes enters an infinite loop when the target is absent.",
+      "length_band": "short",
+      "word_count": 17
+    },
+    {
+      "prompt_id": "POAI-047",
+      "category": "code_debugging",
+      "category_index": 2,
+      "split": "development",
+      "prompt": "Find and fix the JavaScript error causing a function to return undefined when an array is empty.",
+      "length_band": "short",
+      "word_count": 17
+    },
+    {
+      "prompt_id": "POAI-048",
+      "category": "code_debugging",
+      "category_index": 3,
+      "split": "development",
+      "prompt": "Debug a Python program that counts word frequencies but treats uppercase and lowercase words differently.",
+      "length_band": "short",
+      "word_count": 15
+    },
+    {
+      "prompt_id": "POAI-049",
+      "category": "code_debugging",
+      "category_index": 4,
+      "split": "frozen_evaluation",
+      "prompt": "Fix a C++ linked-list deletion function that crashes when deleting the head node. Explain why the original logic can dereference an invalid pointer, show a corrected implementation that safely handles an empty list, a single-node list, and deletion of the head, and preserve the behavior for deleting other nodes. Mention the ownership or memory-management issue that should also be considered. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 96
+    },
+    {
+      "prompt_id": "POAI-050",
+      "category": "code_debugging",
+      "category_index": 5,
+      "split": "frozen_evaluation",
+      "prompt": "Debug this JavaScript loop that skips every second element while removing values from an array. Include the main reasoning, a small practical example, and the most important limitation or edge case.",
+      "length_band": "medium",
+      "word_count": 31
+    },
+    {
+      "prompt_id": "POAI-051",
+      "category": "code_debugging",
+      "category_index": 6,
+      "split": "frozen_evaluation",
+      "prompt": "Find the issue in a SQL query that is supposed to return employees with the second-highest salary. Explain why a naive MAX-based or ORDER BY approach can fail when multiple employees share the highest salary, then provide a corrected query that returns the second distinct-highest salary. State how the query behaves when a second distinct salary does not exist. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 95
+    },
+    {
+      "prompt_id": "POAI-052",
+      "category": "code_debugging",
+      "category_index": 7,
+      "split": "frozen_evaluation",
+      "prompt": "Debug a Java program that reports unbalanced parentheses even when the input is valid.",
+      "length_band": "short",
+      "word_count": 14
+    },
+    {
+      "prompt_id": "POAI-053",
+      "category": "code_debugging",
+      "category_index": 8,
+      "split": "frozen_evaluation",
+      "prompt": "Fix a Python recursive function that causes a RecursionError for larger inputs. Explain how the recursion depth grows, identify the missing or ineffective base-case logic if applicable, and provide an iterative or otherwise safer implementation where appropriate. Include a small example input and explain why the corrected version avoids the original failure.",
+      "length_band": "medium",
+      "word_count": 52
+    },
+    {
+      "prompt_id": "POAI-054",
+      "category": "code_debugging",
+      "category_index": 9,
+      "split": "frozen_evaluation",
+      "prompt": "Debug a Node.js Express route that returns a 404 even though the endpoint is registered. Include the main reasoning, a small practical example, and the most important limitation or edge case.",
+      "length_band": "medium",
+      "word_count": 32
+    },
+    {
+      "prompt_id": "POAI-055",
+      "category": "code_debugging",
+      "category_index": 10,
+      "split": "frozen_evaluation",
+      "prompt": "Find and fix a bug in a C++ merge-sort implementation that produces an incorrectly ordered result. Explain the role of the merge step, identify the kind of index or copying error that can cause elements to be misplaced, provide corrected code for the merge logic, and state the expected time complexity. The solution should handle duplicate values correctly. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 94
+    },
+    {
+      "prompt_id": "POAI-056",
+      "category": "code_debugging",
+      "category_index": 11,
+      "split": "frozen_evaluation",
+      "prompt": "Debug a JavaScript promise chain where errors are not reaching the final catch block.",
+      "length_band": "short",
+      "word_count": 14
+    },
+    {
+      "prompt_id": "POAI-057",
+      "category": "code_debugging",
+      "category_index": 12,
+      "split": "frozen_evaluation",
+      "prompt": "Fix a Python program that calculates an average incorrectly when the input contains missing values. Treat missing entries as values that should be excluded from the denominator rather than converted into zero. Show a corrected implementation, explain the difference between ignoring and imputing missing values, and include an example demonstrating the expected average.",
+      "length_band": "medium",
+      "word_count": 53
+    },
+    {
+      "prompt_id": "POAI-058",
+      "category": "code_debugging",
+      "category_index": 13,
+      "split": "frozen_evaluation",
+      "prompt": "Debug a C++ BFS implementation that visits the same graph node repeatedly.",
+      "length_band": "short",
+      "word_count": 12
+    },
+    {
+      "prompt_id": "POAI-059",
+      "category": "code_debugging",
+      "category_index": 14,
+      "split": "frozen_evaluation",
+      "prompt": "Find and fix a SQL JOIN query that duplicates rows unexpectedly. Explain how a one-to-many relationship can create multiple result rows for a single parent, show how to identify whether the join condition is responsible, and provide a corrected query for returning one row per customer when only the latest order is required. Avoid using DISTINCT as the only explanation. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 96
+    },
+    {
+      "prompt_id": "POAI-060",
+      "category": "code_debugging",
+      "category_index": 15,
+      "split": "frozen_evaluation",
+      "prompt": "Debug a React component that keeps re-rendering because of an incorrectly configured effect.",
+      "length_band": "short",
+      "word_count": 13
+    },
+    {
+      "prompt_id": "POAI-061",
+      "category": "summarization",
+      "category_index": 1,
+      "split": "development",
+      "prompt": "Summarize a technical article about microservices architecture in five bullet points.",
+      "length_band": "short",
+      "word_count": 11
+    },
+    {
+      "prompt_id": "POAI-062",
+      "category": "summarization",
+      "category_index": 2,
+      "split": "development",
+      "prompt": "Summarize a detailed explanation of database indexing into a concise revision paragraph.",
+      "length_band": "short",
+      "word_count": 12
+    },
+    {
+      "prompt_id": "POAI-063",
+      "category": "summarization",
+      "category_index": 3,
+      "split": "development",
+      "prompt": "Reduce a detailed description of the software development life cycle to its essential steps.",
+      "length_band": "short",
+      "word_count": 14
+    },
+    {
+      "prompt_id": "POAI-064",
+      "category": "summarization",
+      "category_index": 4,
+      "split": "frozen_evaluation",
+      "prompt": "Summarize the main differences between supervised and unsupervised learning for an exam. Include the main reasoning, a small practical example, and the most important limitation or edge case. Include the main reasoning, a small practical example, and the most important limitation or edge case.",
+      "length_band": "medium",
+      "word_count": 44
+    },
+    {
+      "prompt_id": "POAI-065",
+      "category": "summarization",
+      "category_index": 5,
+      "split": "frozen_evaluation",
+      "prompt": "Condense the following type of technical explanation of TCP congestion control into a short study note. Preserve the key concepts of congestion window, slow start, congestion avoidance, packet loss, and the effect of acknowledgements. Organize the result with short headings or bullets, remove repeated explanations and filler, and keep enough technical detail that a student can use the note for interview revision. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 98
+    },
+    {
+      "prompt_id": "POAI-066",
+      "category": "summarization",
+      "category_index": 6,
+      "split": "frozen_evaluation",
+      "prompt": "Summarize a project description while preserving its objective, technology stack, and major features. Include the main reasoning, a small practical example, and the most important limitation or edge case. Include the main reasoning, a small practical example, and the most important limitation or edge case.",
+      "length_band": "medium",
+      "word_count": 45
+    },
+    {
+      "prompt_id": "POAI-067",
+      "category": "summarization",
+      "category_index": 7,
+      "split": "frozen_evaluation",
+      "prompt": "Turn a detailed explanation of normalization into a compact revision note.",
+      "length_band": "short",
+      "word_count": 11
+    },
+    {
+      "prompt_id": "POAI-068",
+      "category": "summarization",
+      "category_index": 8,
+      "split": "frozen_evaluation",
+      "prompt": "Summarize a long article about cloud computing into six key points.",
+      "length_band": "short",
+      "word_count": 11
+    },
+    {
+      "prompt_id": "POAI-069",
+      "category": "summarization",
+      "category_index": 9,
+      "split": "frozen_evaluation",
+      "prompt": "Condense an explanation of JavaScript promises into a study note while retaining the important concepts. Preserve the relationship between pending, fulfilled, and rejected states, explain then and catch at a high level, mention asynchronous execution, and include one small code example. Remove repetition and introductory filler, but do not oversimplify the explanation to the point that promise chaining becomes misleading. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 96
+    },
+    {
+      "prompt_id": "POAI-070",
+      "category": "summarization",
+      "category_index": 10,
+      "split": "frozen_evaluation",
+      "prompt": "Summarize a software bug report into its cause, impact, and resolution.",
+      "length_band": "short",
+      "word_count": 11
+    },
+    {
+      "prompt_id": "POAI-071",
+      "category": "summarization",
+      "category_index": 11,
+      "split": "frozen_evaluation",
+      "prompt": "Reduce an explanation of operating-system scheduling algorithms to a comparison-focused summary. Retain the main ideas of FCFS, SJF, Round Robin, and Priority Scheduling, including the basic selection rule, one advantage, one limitation, and the typical effect on response time or waiting time. Use a compact comparison structure and avoid unrelated OS topics. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 88
+    },
+    {
+      "prompt_id": "POAI-072",
+      "category": "summarization",
+      "category_index": 12,
+      "split": "frozen_evaluation",
+      "prompt": "Summarize a research abstract into its problem, method, results, and conclusion.",
+      "length_band": "short",
+      "word_count": 11
+    },
+    {
+      "prompt_id": "POAI-073",
+      "category": "summarization",
+      "category_index": 13,
+      "split": "frozen_evaluation",
+      "prompt": "Condense a set of software project meeting notes into action items and decisions. Preserve every concrete decision, assigned responsibility, deadline, unresolved issue, and follow-up task. Remove greetings, repeated discussion, and conversational filler. Group the final result into Decisions, Action Items, Open Issues, and Deadlines so that a team member can understand what must happen next without reading the original notes. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 96
+    },
+    {
+      "prompt_id": "POAI-074",
+      "category": "summarization",
+      "category_index": 14,
+      "split": "frozen_evaluation",
+      "prompt": "Summarize a technical tutorial for a beginner without losing the core steps. Include the main reasoning, a small practical example, and the most important limitation or edge case. Include the main reasoning, a small practical example, and the most important limitation or edge case.",
+      "length_band": "medium",
+      "word_count": 44
+    },
+    {
+      "prompt_id": "POAI-075",
+      "category": "summarization",
+      "category_index": 15,
+      "split": "frozen_evaluation",
+      "prompt": "Reduce a long explanation of REST APIs into a concise interview-ready answer. Include the main reasoning, a small practical example, and the most important limitation or edge case. Include the main reasoning, a small practical example, and the most important limitation or edge case.",
+      "length_band": "medium",
+      "word_count": 44
+    },
+    {
+      "prompt_id": "POAI-076",
+      "category": "rewriting",
+      "category_index": 1,
+      "split": "development",
+      "prompt": "Rewrite this technical paragraph so that a beginner can understand it without changing its meaning.",
+      "length_band": "short",
+      "word_count": 15
+    },
+    {
+      "prompt_id": "POAI-077",
+      "category": "rewriting",
+      "category_index": 2,
+      "split": "development",
+      "prompt": "Rewrite the following project description in a concise professional style suitable for a resume.",
+      "length_band": "short",
+      "word_count": 14
+    },
+    {
+      "prompt_id": "POAI-078",
+      "category": "rewriting",
+      "category_index": 3,
+      "split": "development",
+      "prompt": "Rewrite this informal email into a polite and professional email to a hiring manager.",
+      "length_band": "short",
+      "word_count": 14
+    },
+    {
+      "prompt_id": "POAI-079",
+      "category": "rewriting",
+      "category_index": 4,
+      "split": "frozen_evaluation",
+      "prompt": "Rewrite this explanation of machine learning using simpler language while preserving the technical meaning. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result. Preserve the original meaning and all important technical details, improve clarity and readability, remove unnecessary repetition, and keep the requested tone and audience in mind. Do not introduce new claims or change the factual meaning of the original content.",
+      "length_band": "long",
+      "word_count": 89
+    },
+    {
+      "prompt_id": "POAI-080",
+      "category": "rewriting",
+      "category_index": 5,
+      "split": "frozen_evaluation",
+      "prompt": "Rewrite the following paragraph to remove unnecessary repetition and improve clarity. Preserve the original meaning and important technical details while improving clarity, readability, and the requested tone. Do not add new claims.",
+      "length_band": "medium",
+      "word_count": 32
+    },
+    {
+      "prompt_id": "POAI-081",
+      "category": "rewriting",
+      "category_index": 6,
+      "split": "frozen_evaluation",
+      "prompt": "Rewrite this software requirement so that it is precise and unambiguous. Preserve the original meaning and important technical details while improving clarity, readability, and the requested tone. Do not add new claims.",
+      "length_band": "medium",
+      "word_count": 32
+    },
+    {
+      "prompt_id": "POAI-082",
+      "category": "rewriting",
+      "category_index": 7,
+      "split": "frozen_evaluation",
+      "prompt": "Rewrite this introduction in an academic style without adding new claims.",
+      "length_band": "short",
+      "word_count": 11
+    },
+    {
+      "prompt_id": "POAI-083",
+      "category": "rewriting",
+      "category_index": 8,
+      "split": "frozen_evaluation",
+      "prompt": "Rewrite this technical explanation into a short interview answer.",
+      "length_band": "short",
+      "word_count": 9
+    },
+    {
+      "prompt_id": "POAI-084",
+      "category": "rewriting",
+      "category_index": 9,
+      "split": "frozen_evaluation",
+      "prompt": "Rewrite the following bullet points using strong action verbs while preserving the original facts. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result. Preserve the original meaning and all important technical details, improve clarity and readability, remove unnecessary repetition, and keep the requested tone and audience in mind. Do not introduce new claims or change the factual meaning of the original content.",
+      "length_band": "long",
+      "word_count": 89
+    },
+    {
+      "prompt_id": "POAI-085",
+      "category": "rewriting",
+      "category_index": 10,
+      "split": "frozen_evaluation",
+      "prompt": "Rewrite this paragraph in active voice and keep all technical terminology unchanged. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result. Preserve the original meaning and all important technical details, improve clarity and readability, remove unnecessary repetition, and keep the requested tone and audience in mind. Do not introduce new claims or change the factual meaning of the original content.",
+      "length_band": "long",
+      "word_count": 87
+    },
+    {
+      "prompt_id": "POAI-086",
+      "category": "rewriting",
+      "category_index": 11,
+      "split": "frozen_evaluation",
+      "prompt": "Rewrite this problem statement to make the objective and constraints clearer.",
+      "length_band": "short",
+      "word_count": 11
+    },
+    {
+      "prompt_id": "POAI-087",
+      "category": "rewriting",
+      "category_index": 12,
+      "split": "frozen_evaluation",
+      "prompt": "Rewrite this project abstract to improve flow while preserving its original contribution. Preserve the original meaning and important technical details while improving clarity, readability, and the requested tone. Do not add new claims.",
+      "length_band": "medium",
+      "word_count": 33
+    },
+    {
+      "prompt_id": "POAI-088",
+      "category": "rewriting",
+      "category_index": 13,
+      "split": "frozen_evaluation",
+      "prompt": "Rewrite the following documentation so that the steps are easier to follow. Preserve the original meaning and important technical details while improving clarity, readability, and the requested tone. Do not add new claims.",
+      "length_band": "medium",
+      "word_count": 33
+    },
+    {
+      "prompt_id": "POAI-089",
+      "category": "rewriting",
+      "category_index": 14,
+      "split": "frozen_evaluation",
+      "prompt": "Rewrite this message in a concise and professional tone without sounding overly formal. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result. Preserve the original meaning and all important technical details, improve clarity and readability, remove unnecessary repetition, and keep the requested tone and audience in mind. Do not introduce new claims or change the factual meaning of the original content.",
+      "length_band": "long",
+      "word_count": 88
+    },
+    {
+      "prompt_id": "POAI-090",
+      "category": "rewriting",
+      "category_index": 15,
+      "split": "frozen_evaluation",
+      "prompt": "Rewrite the following technical content for a non-technical stakeholder.",
+      "length_band": "short",
+      "word_count": 9
+    },
+    {
+      "prompt_id": "POAI-091",
+      "category": "comparison",
+      "category_index": 1,
+      "split": "development",
+      "prompt": "Compare arrays and linked lists in terms of memory, access time, insertion, and deletion.",
+      "length_band": "short",
+      "word_count": 14
+    },
+    {
+      "prompt_id": "POAI-092",
+      "category": "comparison",
+      "category_index": 2,
+      "split": "development",
+      "prompt": "Compare SQL and NoSQL databases and explain when each is appropriate.",
+      "length_band": "short",
+      "word_count": 11
+    },
+    {
+      "prompt_id": "POAI-093",
+      "category": "comparison",
+      "category_index": 3,
+      "split": "development",
+      "prompt": "Compare TCP and UDP for reliability, speed, ordering, and typical use cases.",
+      "length_band": "short",
+      "word_count": 12
+    },
+    {
+      "prompt_id": "POAI-094",
+      "category": "comparison",
+      "category_index": 4,
+      "split": "frozen_evaluation",
+      "prompt": "Compare TF-IDF and sentence-transformer embeddings for text classification. Include a concise comparison of the main differences, one practical example, and a short recommendation based on the use case. Include a concise comparison of the main differences, one practical example, and a short recommendation based on the use case.",
+      "length_band": "medium",
+      "word_count": 48
+    },
+    {
+      "prompt_id": "POAI-095",
+      "category": "comparison",
+      "category_index": 5,
+      "split": "frozen_evaluation",
+      "prompt": "Compare REST and GraphQL APIs in terms of data fetching, complexity, and flexibility. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result. Discuss the comparison using clear criteria, explain the practical trade-offs, include a small example for each side, and conclude with guidance on when a developer should choose one option over the other.",
+      "length_band": "long",
+      "word_count": 81
+    },
+    {
+      "prompt_id": "POAI-096",
+      "category": "comparison",
+      "category_index": 6,
+      "split": "frozen_evaluation",
+      "prompt": "Compare stack and queue data structures with examples of real-world applications. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result. Discuss the comparison using clear criteria, explain the practical trade-offs, include a small example for each side, and conclude with guidance on when a developer should choose one option over the other.",
+      "length_band": "long",
+      "word_count": 79
+    },
+    {
+      "prompt_id": "POAI-097",
+      "category": "comparison",
+      "category_index": 7,
+      "split": "frozen_evaluation",
+      "prompt": "Compare monolithic and microservices architectures and discuss their trade-offs. Include a concise comparison of the main differences, one practical example, and a short recommendation based on the use case. Include a concise comparison of the main differences, one practical example, and a short recommendation based on the use case.",
+      "length_band": "medium",
+      "word_count": 49
+    },
+    {
+      "prompt_id": "POAI-098",
+      "category": "comparison",
+      "category_index": 8,
+      "split": "frozen_evaluation",
+      "prompt": "Compare synchronous and asynchronous programming in JavaScript.",
+      "length_band": "short",
+      "word_count": 7
+    },
+    {
+      "prompt_id": "POAI-099",
+      "category": "comparison",
+      "category_index": 9,
+      "split": "frozen_evaluation",
+      "prompt": "Compare BFS and DFS in terms of traversal strategy, complexity, and common applications. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result. Discuss the comparison using clear criteria, explain the practical trade-offs, include a small example for each side, and conclude with guidance on when a developer should choose one option over the other.",
+      "length_band": "long",
+      "word_count": 81
+    },
+    {
+      "prompt_id": "POAI-100",
+      "category": "comparison",
+      "category_index": 10,
+      "split": "frozen_evaluation",
+      "prompt": "Compare relational databases and document databases for a web application. Include a concise comparison of the main differences, one practical example, and a short recommendation based on the use case. Include a concise comparison of the main differences, one practical example, and a short recommendation based on the use case.",
+      "length_band": "medium",
+      "word_count": 50
+    },
+    {
+      "prompt_id": "POAI-101",
+      "category": "comparison",
+      "category_index": 11,
+      "split": "frozen_evaluation",
+      "prompt": "Compare JWT-based authentication with session-based authentication.",
+      "length_band": "short",
+      "word_count": 6
+    },
+    {
+      "prompt_id": "POAI-102",
+      "category": "comparison",
+      "category_index": 12,
+      "split": "frozen_evaluation",
+      "prompt": "Compare client-side rendering and server-side rendering for modern web applications. Include a concise comparison of the main differences, one practical example, and a short recommendation based on the use case. Include a concise comparison of the main differences, one practical example, and a short recommendation based on the use case.",
+      "length_band": "medium",
+      "word_count": 50
+    },
+    {
+      "prompt_id": "POAI-103",
+      "category": "comparison",
+      "category_index": 13,
+      "split": "frozen_evaluation",
+      "prompt": "Compare merge sort and quicksort with respect to complexity, memory, and practical performance. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result. Discuss the comparison using clear criteria, explain the practical trade-offs, include a small example for each side, and conclude with guidance on when a developer should choose one option over the other.",
+      "length_band": "long",
+      "word_count": 81
+    },
+    {
+      "prompt_id": "POAI-104",
+      "category": "comparison",
+      "category_index": 14,
+      "split": "frozen_evaluation",
+      "prompt": "Compare containers and virtual machines for application deployment.",
+      "length_band": "short",
+      "word_count": 8
+    },
+    {
+      "prompt_id": "POAI-105",
+      "category": "comparison",
+      "category_index": 15,
+      "split": "frozen_evaluation",
+      "prompt": "Compare supervised learning and unsupervised learning with examples.",
+      "length_band": "short",
+      "word_count": 8
+    },
+    {
+      "prompt_id": "POAI-106",
+      "category": "data_analysis",
+      "category_index": 1,
+      "split": "development",
+      "prompt": "Analyze a dataset of employee salaries and identify the departments with the highest average salary.",
+      "length_band": "short",
+      "word_count": 15
+    },
+    {
+      "prompt_id": "POAI-107",
+      "category": "data_analysis",
+      "category_index": 2,
+      "split": "development",
+      "prompt": "Given monthly sales data, calculate month-over-month growth and identify the strongest growth period.",
+      "length_band": "short",
+      "word_count": 13
+    },
+    {
+      "prompt_id": "POAI-108",
+      "category": "data_analysis",
+      "category_index": 3,
+      "split": "development",
+      "prompt": "Analyze customer transaction data and identify the top five customers by total spending.",
+      "length_band": "short",
+      "word_count": 13
+    },
+    {
+      "prompt_id": "POAI-109",
+      "category": "data_analysis",
+      "category_index": 4,
+      "split": "frozen_evaluation",
+      "prompt": "Given website traffic data, identify unusual spikes and suggest possible interpretations.",
+      "length_band": "short",
+      "word_count": 11
+    },
+    {
+      "prompt_id": "POAI-110",
+      "category": "data_analysis",
+      "category_index": 5,
+      "split": "frozen_evaluation",
+      "prompt": "Analyze student scores and report the mean, median, standard deviation, and highest score. Explain the calculation briefly, handle missing values where relevant, and state how the result should be interpreted. Explain the calculation briefly, handle missing values where relevant, and state how the result should be interpreted.",
+      "length_band": "medium",
+      "word_count": 47
+    },
+    {
+      "prompt_id": "POAI-111",
+      "category": "data_analysis",
+      "category_index": 6,
+      "split": "frozen_evaluation",
+      "prompt": "Given product review ratings, determine the average rating by category and identify the lowest-performing category. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result. Explain the calculation method, define the relevant numerator and denominator clearly, handle missing or invalid records explicitly, show a small example of the calculation, and describe how the result should be interpreted without making unsupported conclusions.",
+      "length_band": "long",
+      "word_count": 87
+    },
+    {
+      "prompt_id": "POAI-112",
+      "category": "data_analysis",
+      "category_index": 7,
+      "split": "frozen_evaluation",
+      "prompt": "Analyze daily temperature data and identify the warmest and coldest weeks.",
+      "length_band": "short",
+      "word_count": 11
+    },
+    {
+      "prompt_id": "POAI-113",
+      "category": "data_analysis",
+      "category_index": 8,
+      "split": "frozen_evaluation",
+      "prompt": "Given server response-time measurements, calculate summary statistics and identify potential outliers.",
+      "length_band": "short",
+      "word_count": 11
+    },
+    {
+      "prompt_id": "POAI-114",
+      "category": "data_analysis",
+      "category_index": 9,
+      "split": "frozen_evaluation",
+      "prompt": "Analyze a dataset containing missing values and recommend an appropriate handling strategy. Explain the calculation briefly, handle missing values where relevant, and state how the result should be interpreted. Explain the calculation briefly, handle missing values where relevant, and state how the result should be interpreted.",
+      "length_band": "medium",
+      "word_count": 46
+    },
+    {
+      "prompt_id": "POAI-115",
+      "category": "data_analysis",
+      "category_index": 10,
+      "split": "frozen_evaluation",
+      "prompt": "Given monthly revenue and expense data, calculate profit margins and identify months with declining profitability. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result. Explain the calculation method, define the relevant numerator and denominator clearly, handle missing or invalid records explicitly, show a small example of the calculation, and describe how the result should be interpreted without making unsupported conclusions.",
+      "length_band": "long",
+      "word_count": 87
+    },
+    {
+      "prompt_id": "POAI-116",
+      "category": "data_analysis",
+      "category_index": 11,
+      "split": "frozen_evaluation",
+      "prompt": "Analyze customer churn data and identify which customer segment has the highest churn rate. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result. Explain the calculation method, define the relevant numerator and denominator clearly, handle missing or invalid records explicitly, show a small example of the calculation, and describe how the result should be interpreted without making unsupported conclusions.",
+      "length_band": "long",
+      "word_count": 86
+    },
+    {
+      "prompt_id": "POAI-117",
+      "category": "data_analysis",
+      "category_index": 12,
+      "split": "frozen_evaluation",
+      "prompt": "Given a dataset of website events containing traffic source, session identifier, and whether a purchase occurred, calculate the conversion rate for each traffic source. Define conversion rate as unique converting sessions divided by unique sessions for that source, handle sources with zero sessions safely, and present the results in a table sorted by conversion rate descending. Also mention how missing or duplicate event records could affect the calculation. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 104
+    },
+    {
+      "prompt_id": "POAI-118",
+      "category": "data_analysis",
+      "category_index": 13,
+      "split": "frozen_evaluation",
+      "prompt": "Analyze delivery times and determine whether the distribution contains significant outliers.",
+      "length_band": "short",
+      "word_count": 11
+    },
+    {
+      "prompt_id": "POAI-119",
+      "category": "data_analysis",
+      "category_index": 14,
+      "split": "frozen_evaluation",
+      "prompt": "Given quarterly sales for multiple regions, compare regional performance and identify the fastest-growing region. Explain the calculation briefly, handle missing values where relevant, and state how the result should be interpreted.",
+      "length_band": "medium",
+      "word_count": 31
+    },
+    {
+      "prompt_id": "POAI-120",
+      "category": "data_analysis",
+      "category_index": 15,
+      "split": "frozen_evaluation",
+      "prompt": "Analyze model predictions and calculate precision, recall, and F1-score from the confusion matrix. Explain the calculation briefly, handle missing values where relevant, and state how the result should be interpreted. Explain the calculation briefly, handle missing values where relevant, and state how the result should be interpreted.",
+      "length_band": "medium",
+      "word_count": 47
+    },
+    {
+      "prompt_id": "POAI-121",
+      "category": "creative_content_generation",
+      "category_index": 1,
+      "split": "development",
+      "prompt": "Write a short story about a software engineer who discovers a bug that changes how their application behaves. Make the story suitable for a technical audience but accessible to non-engineers, include a realistic debugging process, a misleading initial hypothesis, the eventual root cause, and a lesson learned. Keep the story between 500 and 700 words and avoid using a specific real company or person.",
+      "length_band": "medium",
+      "word_count": 64
+    },
+    {
+      "prompt_id": "POAI-122",
+      "category": "creative_content_generation",
+      "category_index": 2,
+      "split": "development",
+      "prompt": "Create a motivational LinkedIn post about learning data structures consistently. The post should target college students preparing for software engineering placements, use a professional but encouraging tone, include three practical habits, avoid exaggerated claims about guaranteed jobs, and end with a concise call to action. Keep it under 180 words and use short paragraphs rather than a long block of text.",
+      "length_band": "medium",
+      "word_count": 61
+    },
+    {
+      "prompt_id": "POAI-123",
+      "category": "creative_content_generation",
+      "category_index": 3,
+      "split": "development",
+      "prompt": "Write a short dialogue between a student and a mentor discussing preparation for a coding interview. Cover DSA practice, debugging mistakes, explaining solutions aloud, time management, and handling a question the student cannot solve immediately. Make the mentor supportive rather than unrealistic, keep the dialogue suitable for a two-minute reading, and end with a practical study plan for the next week.",
+      "length_band": "medium",
+      "word_count": 61
+    },
+    {
+      "prompt_id": "POAI-124",
+      "category": "creative_content_generation",
+      "category_index": 4,
+      "split": "frozen_evaluation",
+      "prompt": "Create a simple analogy that explains cloud computing to a non-technical audience.",
+      "length_band": "short",
+      "word_count": 12
+    },
+    {
+      "prompt_id": "POAI-125",
+      "category": "creative_content_generation",
+      "category_index": 5,
+      "split": "frozen_evaluation",
+      "prompt": "Write a fictional product announcement for a new AI-powered study assistant aimed at university students. Explain the product's main purpose, describe three useful features, mention that generated answers should be verified, and avoid claiming that the system is always correct. Use a professional launch-announcement tone, include a short headline, and keep the announcement between 250 and 350 words. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 94
+    },
+    {
+      "prompt_id": "POAI-126",
+      "category": "creative_content_generation",
+      "category_index": 6,
+      "split": "frozen_evaluation",
+      "prompt": "Create a short social-media post encouraging beginners to learn programming.",
+      "length_band": "short",
+      "word_count": 10
+    },
+    {
+      "prompt_id": "POAI-127",
+      "category": "creative_content_generation",
+      "category_index": 7,
+      "split": "frozen_evaluation",
+      "prompt": "Write a two-minute presentation script introducing an AI research project on prompt optimization. The script should explain the problem of verbose or unclear prompts, describe the idea of analyzing prompts before optimization, mention evaluation of token usage and response quality, and end with the project's expected contribution. Use language appropriate for a final-year engineering presentation and avoid making claims of guaranteed improvement. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 98
+    },
+    {
+      "prompt_id": "POAI-128",
+      "category": "creative_content_generation",
+      "category_index": 8,
+      "split": "frozen_evaluation",
+      "prompt": "Create a fictional conversation between two developers debating monolithic and microservices architecture for a new web application. Each developer should present valid technical arguments rather than a simplistic right-or-wrong position. Discuss deployment, scalability, operational complexity, debugging, team size, and data management, then have them reach a conditional conclusion based on project requirements.",
+      "length_band": "medium",
+      "word_count": 52
+    },
+    {
+      "prompt_id": "POAI-129",
+      "category": "creative_content_generation",
+      "category_index": 9,
+      "split": "frozen_evaluation",
+      "prompt": "Write a concise story that teaches the importance of debugging through a practical situation. Include the main reasoning, a small practical example, and the most important limitation or edge case. Include the main reasoning, a small practical example, and the most important limitation or edge case.",
+      "length_band": "medium",
+      "word_count": 46
+    },
+    {
+      "prompt_id": "POAI-130",
+      "category": "creative_content_generation",
+      "category_index": 10,
+      "split": "frozen_evaluation",
+      "prompt": "Create a professional introduction for a student presenting a final-year software project.",
+      "length_band": "short",
+      "word_count": 12
+    },
+    {
+      "prompt_id": "POAI-131",
+      "category": "creative_content_generation",
+      "category_index": 11,
+      "split": "frozen_evaluation",
+      "prompt": "Write a short scenario demonstrating why database backups are important. Use a fictional small software company, describe a realistic failure such as accidental deletion or infrastructure corruption, show the impact on the application, and explain how a tested backup and recovery process reduces the damage. Keep the scenario technically plausible and end with three practical backup recommendations.",
+      "length_band": "medium",
+      "word_count": 57
+    },
+    {
+      "prompt_id": "POAI-132",
+      "category": "creative_content_generation",
+      "category_index": 12,
+      "split": "frozen_evaluation",
+      "prompt": "Create a creative analogy for explaining machine-learning model training.",
+      "length_band": "short",
+      "word_count": 9
+    },
+    {
+      "prompt_id": "POAI-133",
+      "category": "creative_content_generation",
+      "category_index": 13,
+      "split": "frozen_evaluation",
+      "prompt": "Write a short technical blog introduction about the future of AI-assisted programming. Introduce the benefits of code generation and debugging assistance, discuss risks such as incorrect generated code and over-reliance, and frame AI as an engineering aid rather than a replacement for developer judgment. Use a professional technical-blog tone and finish with a clear thesis for the article. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 94
+    },
+    {
+      "prompt_id": "POAI-134",
+      "category": "creative_content_generation",
+      "category_index": 14,
+      "split": "frozen_evaluation",
+      "prompt": "Create a concise script for a video explaining why cybersecurity matters to everyday users. Include the main reasoning, a small practical example, and the most important limitation or edge case. Include the main reasoning, a small practical example, and the most important limitation or edge case.",
+      "length_band": "medium",
+      "word_count": 46
+    },
+    {
+      "prompt_id": "POAI-135",
+      "category": "creative_content_generation",
+      "category_index": 15,
+      "split": "frozen_evaluation",
+      "prompt": "Write a fictional case study showing how a small company benefits from cloud deployment. Describe the company's initial infrastructure problem, explain the chosen cloud approach, and discuss improvements in deployment speed, scalability, monitoring, and cost visibility. Include at least one trade-off or limitation rather than presenting cloud adoption as universally beneficial, and structure the case study with short headings. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 95
+    },
+    {
+      "prompt_id": "POAI-136",
+      "category": "problem_solving",
+      "category_index": 1,
+      "split": "development",
+      "prompt": "Solve the problem of finding the longest substring without repeating characters and explain the algorithm.",
+      "length_band": "short",
+      "word_count": 15
+    },
+    {
+      "prompt_id": "POAI-137",
+      "category": "problem_solving",
+      "category_index": 2,
+      "split": "development",
+      "prompt": "Design an algorithm to find the minimum number of coins needed to make a target amount. Assume the coin denominations are positive integers and may not form a canonical coin system, so a greedy strategy is not always correct. Explain a dynamic-programming approach, define the recurrence and base case, provide pseudocode, discuss the time and space complexity, and state how the algorithm behaves when the target amount cannot be formed.",
+      "length_band": "medium",
+      "word_count": 70
+    },
+    {
+      "prompt_id": "POAI-138",
+      "category": "problem_solving",
+      "category_index": 3,
+      "split": "development",
+      "prompt": "Solve the problem of detecting whether a linked list contains a cycle and explain the reasoning.",
+      "length_band": "short",
+      "word_count": 16
+    },
+    {
+      "prompt_id": "POAI-139",
+      "category": "problem_solving",
+      "category_index": 4,
+      "split": "frozen_evaluation",
+      "prompt": "Design an approach to schedule meetings so that the maximum number of non-overlapping meetings can be selected. Each meeting has a start and end time, meetings that touch at an endpoint may be considered non-overlapping, and the input can contain meetings in arbitrary order. Explain the greedy strategy, justify why sorting by finishing time works, provide pseudocode, and state the time complexity.",
+      "length_band": "medium",
+      "word_count": 62
+    },
+    {
+      "prompt_id": "POAI-140",
+      "category": "problem_solving",
+      "category_index": 5,
+      "split": "frozen_evaluation",
+      "prompt": "Solve the problem of finding the shortest path in an unweighted graph from a given source vertex to a target vertex. Explain why breadth-first search is appropriate, show how to store parent information so the actual path can be reconstructed, handle the case where the target is unreachable, and provide pseudocode. Also state the time and space complexity for an adjacency-list representation.",
+      "length_band": "medium",
+      "word_count": 62
+    },
+    {
+      "prompt_id": "POAI-141",
+      "category": "problem_solving",
+      "category_index": 6,
+      "split": "frozen_evaluation",
+      "prompt": "Design an algorithm to determine whether two strings are anagrams using efficient time and space complexity.",
+      "length_band": "short",
+      "word_count": 16
+    },
+    {
+      "prompt_id": "POAI-142",
+      "category": "problem_solving",
+      "category_index": 7,
+      "split": "frozen_evaluation",
+      "prompt": "Solve the problem of finding the maximum subarray sum and explain why the algorithm works.",
+      "length_band": "short",
+      "word_count": 15
+    },
+    {
+      "prompt_id": "POAI-143",
+      "category": "problem_solving",
+      "category_index": 8,
+      "split": "frozen_evaluation",
+      "prompt": "Design a method to detect duplicate numbers in an array under a specified memory constraint. The array contains integers, and the goal is to determine whether any value appears more than once without using an auxiliary hash set whose size grows with the input. Discuss at least two possible approaches, explain the time-space trade-off, and clearly state any assumptions such as whether modifying the input array is allowed. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 104
+    },
+    {
+      "prompt_id": "POAI-144",
+      "category": "problem_solving",
+      "category_index": 9,
+      "split": "frozen_evaluation",
+      "prompt": "Solve the problem of merging overlapping intervals and return the resulting intervals. The input contains pairs of start and end values in arbitrary order, intervals that only touch at an endpoint should be treated as overlapping, and the output should be sorted by start value. Explain the sorting and merging strategy, provide pseudocode, include a small example, and state the time and space complexity. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 100
+    },
+    {
+      "prompt_id": "POAI-145",
+      "category": "problem_solving",
+      "category_index": 10,
+      "split": "frozen_evaluation",
+      "prompt": "Design an efficient approach for finding the Kth largest element in an unsorted array.",
+      "length_band": "short",
+      "word_count": 14
+    },
+    {
+      "prompt_id": "POAI-146",
+      "category": "problem_solving",
+      "category_index": 11,
+      "split": "frozen_evaluation",
+      "prompt": "Solve the problem of determining whether a binary tree is balanced. Define balanced as every node having left and right subtree heights that differ by no more than one. Describe an efficient bottom-up approach that avoids repeatedly computing subtree heights, provide pseudocode or code, explain how an imbalance can be propagated to the parent, and state the time and auxiliary space complexity.",
+      "length_band": "medium",
+      "word_count": 62
+    },
+    {
+      "prompt_id": "POAI-147",
+      "category": "problem_solving",
+      "category_index": 12,
+      "split": "frozen_evaluation",
+      "prompt": "Design an algorithm to find connected components in an undirected graph. Assume the graph may contain isolated vertices and multiple components, and represent it with an adjacency list. Explain how DFS or BFS can visit each component exactly once, provide pseudocode, state the time and space complexity, and describe the output format you would use to return the vertices belonging to each component. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 99
+    },
+    {
+      "prompt_id": "POAI-148",
+      "category": "problem_solving",
+      "category_index": 13,
+      "split": "frozen_evaluation",
+      "prompt": "Solve a problem requiring the minimum edits needed to transform one string into another, where an edit can be an insertion, deletion, or substitution of one character. Explain the dynamic-programming state and recurrence, include the base cases for empty prefixes, provide pseudocode, and discuss the time and space complexity. Use a small example to illustrate how the final distance is obtained.",
+      "length_band": "medium",
+      "word_count": 61
+    },
+    {
+      "prompt_id": "POAI-149",
+      "category": "problem_solving",
+      "category_index": 14,
+      "split": "frozen_evaluation",
+      "prompt": "Design an algorithm to find the intersection of two sorted arrays efficiently.",
+      "length_band": "short",
+      "word_count": 12
+    },
+    {
+      "prompt_id": "POAI-150",
+      "category": "problem_solving",
+      "category_index": 15,
+      "split": "frozen_evaluation",
+      "prompt": "Solve a problem where tasks have dependencies and determine a valid execution order. Model each task as a node and each dependency as a directed edge from prerequisite to dependent task. Explain how topological sorting can produce a valid order, detect the case where no valid order exists because of a cycle, provide pseudocode, and state the time and space complexity for an adjacency-list implementation. Keep the response focused on the requested task, preserve all explicitly stated conditions, avoid inventing facts or requirements, and organize the answer so that another student or developer could understand the reasoning and verify the result.",
+      "length_band": "long",
+      "word_count": 101
+    }
+  ],
+  "length_design": {
+    "frozen_evaluation": "120 prompts: 40 short (<=30 words), 40 medium (31-70 words), 40 long (>70 words), exactly 4 of each per category",
+    "purpose": "Measure optimization behavior across prompt length/complexity without changing category balance."
+  },
+  "status": "FROZEN_v1.1"
+}
