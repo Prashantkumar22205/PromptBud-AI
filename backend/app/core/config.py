@@ -52,6 +52,16 @@ class Settings(BaseSettings):
     intent_classifier_type: str = "hybrid"
     intent_hybrid_alpha: float = 0.6
 
+   # LLM Configuration
+    gemini_api_key: str
+    groq_api_key: str | None = None
+    nvidia_nim_api_key: str | None = None
+    
+    response_evaluator_model: str | None = None
+    optimizer_model: str | None = None
+    target_model: str | None = None
+
+    
     # ── Module 4: Prompt optimization generation ────────────────────────────
     optimization_temperature: float = Field(default=0.2, ge=0.0, le=2.0)
     optimization_max_output_tokens: int = Field(default=2048, gt=0)

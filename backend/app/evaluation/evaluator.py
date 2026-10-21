@@ -57,7 +57,10 @@ class PromptEvaluator:
                 request.original_prompt, request.optimized_prompt
             )
             requirement_preservation = calculate_requirement_preservation(
-                request.original_prompt, request.optimized_prompt, self._requirement_extractor
+                request.original_prompt,
+                request.optimized_prompt,
+                self._requirement_extractor,
+                self._constraint_extractor,
             )
             constraint_preservation = calculate_constraint_preservation(
                 request.original_prompt, request.optimized_prompt, self._constraint_extractor

@@ -10,6 +10,7 @@ import os
 import sys
 from pathlib import Path
 
+from app.core.config import settings
 from experiments.benchmark_runner import (
     BenchmarkError,
     BenchmarkRunner,
@@ -22,7 +23,7 @@ def _parser() -> argparse.ArgumentParser:
     parser.add_argument("--dataset", default="backend/data/promptoptai_benchmark_dataset_v1_1.json")
     parser.add_argument("--optimizer-model", default=os.getenv("OPTIMIZER_MODEL"))
     parser.add_argument("--target-model", default=os.getenv("TARGET_MODEL"))
-    parser.add_argument("--temperature", type=float, default=float(os.getenv("BENCHMARK_TEMPERATURE", "0.2")))
+    parser.add_argument("--temperature", type=float, default=float(os.getenv("BENCHMARK_TEMPERATURE", "1.0")))
     parser.add_argument("--max-output-tokens", type=int, default=int(os.getenv("BENCHMARK_MAX_OUTPUT_TOKENS", "2048")))
     parser.add_argument("--timeout", type=float, default=float(os.getenv("BENCHMARK_TIMEOUT_SECONDS", "60")))
     parser.add_argument("--limit", type=int)
@@ -63,12 +64,17 @@ async def _run(args: argparse.Namespace) -> dict:
         length_band=args.length_band,
         limit=args.limit,
     )
-    return await BenchmarkRunner(backend_root=backend_root).run(
-        config,
-        resume=args.resume,
-        dry_run=args.dry_run,
-        experiment_id=experiment_id,
-    )
+    previous_optimizer_temperature = settings.optimization_temperature
+    settings.optimization_temperature = args.temperature
+    try:
+        return await BenchmarkRunner(backend_root=backend_root).run(
+            config,
+            resume=args.resume,
+            dry_run=args.dry_run,
+            experiment_id=experiment_id,
+        )
+    finally:
+        settings.optimization_temperature = previous_optimizer_temperature
 
 
 def main(argv: list[str] | None = None) -> int:

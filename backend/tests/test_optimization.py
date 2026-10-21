@@ -264,6 +264,86 @@ async def test_litellm_adapter_calls_unified_async_completion(monkeypatch):
 
 
 @pytest.mark.asyncio
+async def test_litellm_retries_transient_status_then_succeeds(monkeypatch):
+    class ProviderError(Exception):
+        def __init__(self, status_code):
+            self.status_code = status_code
+
+    response = SimpleNamespace(choices=[SimpleNamespace(message=SimpleNamespace(content="ok"))])
+    completion = AsyncMock(side_effect=[ProviderError(503), response])
+    sleep = AsyncMock()
+    fake_module = ModuleType("litellm")
+    fake_module.acompletion = completion
+    monkeypatch.setitem(__import__("sys").modules, "litellm", fake_module)
+    monkeypatch.setattr("app.optimization.llm_client.asyncio.sleep", sleep)
+
+    result = await LiteLLMClient().complete(
+        model="provider/model", messages=[{"role": "user", "content": "hello"}],
+        temperature=0.2, max_tokens=256, timeout=5,
+    )
+
+    assert result.text == "ok"
+    assert completion.await_count == 2
+    sleep.assert_awaited_once_with(2)
+
+
+@pytest.mark.asyncio
+async def test_litellm_retries_transient_statuses_three_attempts_then_preserves_error(monkeypatch):
+    class ProviderError(Exception):
+        def __init__(self, status_code):
+            self.status_code = status_code
+
+    errors = [ProviderError(429), ProviderError(500), ProviderError(503)]
+    completion = AsyncMock(side_effect=errors)
+    sleep = AsyncMock()
+    fake_module = ModuleType("litellm")
+    fake_module.acompletion = completion
+    monkeypatch.setitem(__import__("sys").modules, "litellm", fake_module)
+    monkeypatch.setattr("app.optimization.llm_client.asyncio.sleep", sleep)
+
+    with pytest.raises(OptimizationError) as exc:
+        await LiteLLMClient().complete(
+            model="provider/model", messages=[{"role": "user", "content": "hello"}],
+            temperature=0.2, max_tokens=256, timeout=5,
+        )
+
+    assert completion.await_count == 3
+    assert [call.args[0] for call in sleep.await_args_list] == [2, 5]
+    assert exc.value.status_code == 503
+    assert exc.value.provider_error_type == "ProviderError"
+    assert exc.value.provider_status_code == 503
+    assert exc.value.__cause__ is errors[-1]
+    assert "provider/model" not in str(exc.value)
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    "error",
+    [
+        RuntimeError("api_key client option must be set"),
+        type("AuthenticationError", (Exception,), {})("unauthorized"),
+        type("InvalidRequestError", (Exception,), {})("invalid request"),
+    ],
+)
+async def test_litellm_does_not_retry_permanent_provider_errors(monkeypatch, error):
+    completion = AsyncMock(side_effect=error)
+    sleep = AsyncMock()
+    fake_module = ModuleType("litellm")
+    fake_module.acompletion = completion
+    monkeypatch.setitem(__import__("sys").modules, "litellm", fake_module)
+    monkeypatch.setattr("app.optimization.llm_client.asyncio.sleep", sleep)
+
+    with pytest.raises(OptimizationError):
+        await LiteLLMClient().complete(
+            model="provider/model", messages=[{"role": "user", "content": "hello"}],
+            temperature=0.2, max_tokens=256, timeout=5,
+        )
+
+    completion.assert_awaited_once()
+    sleep.assert_not_awaited()
+
+
+@pytest.mark.asyncio
 @pytest.mark.parametrize(
     "error,expected_code,expected_status",
     [

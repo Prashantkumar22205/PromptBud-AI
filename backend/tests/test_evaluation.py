@@ -197,6 +197,141 @@ def test_requirement_matching_is_one_to_one_for_multiple_requirements():
     assert result.preserved_count == result.original_count == 3
 
 
+def test_requirement_matching_recognizes_explain_as_provide_an_explanation():
+    extractor = FakeRequirementExtractor(
+        {
+            "original": [requirement("explain", "binary search")],
+            "optimized": [requirement("provide", "a beginner-friendly explanation of the binary search algorithm")],
+        }
+    )
+    result = calculate_requirement_preservation("original", "optimized", extractor)
+    assert result.preserved_count == 1
+    assert result.preservation_score == 1.0
+
+
+def test_requirement_matching_recognizes_give_as_include_for_quantity():
+    extractor = FakeRequirementExtractor(
+        {
+            "original": [requirement("give", "3 examples")],
+            "optimized": [requirement("include", "3 examples")],
+        }
+    )
+    result = calculate_requirement_preservation("original", "optimized", extractor)
+    assert result.preserved_count == 1
+    assert result.preservation_score == 1.0
+
+
+def test_requirement_matching_requires_the_same_quantity():
+    extractor = FakeRequirementExtractor(
+        {
+            "original": [requirement("give", "3 examples")],
+            "optimized": [requirement("provide", "4 examples")],
+        }
+    )
+    result = calculate_requirement_preservation("original", "optimized", extractor)
+    assert result.preserved_count == 0
+    assert result.preservation_score == 0.0
+
+
+def test_requirement_matching_ignores_only_a_separately_preserved_length_constraint():
+    original_prompt = "original"
+    optimized_prompt = "optimized"
+    extractor = FakeRequirementExtractor(
+        {
+            original_prompt: [
+                requirement("provide", "3 examples and keep the explanation under 300 words")
+            ],
+            optimized_prompt: [
+                requirement("include", "3 examples and ensure the explanation remains under 300 words")
+            ],
+        }
+    )
+    constraints = FakeConstraintExtractor(
+        {
+            original_prompt: [constraint("length", "Length limit: maximum 300 words", maxWords=300)],
+            optimized_prompt: [constraint("length", "Length limit: maximum 300 words", maxWords=300)],
+        }
+    )
+    result = calculate_requirement_preservation(
+        original_prompt, optimized_prompt, extractor, constraints
+    )
+    assert result.preserved_count == 1
+    assert result.preservation_score == 1.0
+
+
+def test_requirement_matching_does_not_ignore_a_changed_length_constraint():
+    original_prompt = "original"
+    optimized_prompt = "optimized"
+    extractor = FakeRequirementExtractor(
+        {
+            original_prompt: [requirement("provide", "3 examples and keep under 300 words")],
+            optimized_prompt: [requirement("include", "3 examples and ensure under 250 words")],
+        }
+    )
+    constraints = FakeConstraintExtractor(
+        {
+            original_prompt: [constraint("length", "Length limit: maximum 300 words", maxWords=300)],
+            optimized_prompt: [constraint("length", "Length limit: maximum 250 words", maxWords=250)],
+        }
+    )
+    result = calculate_requirement_preservation(
+        original_prompt, optimized_prompt, extractor, constraints
+    )
+    assert result.preserved_count == 0
+    assert result.preservation_score == 0.0
+
+
+def test_requirement_matching_does_not_preserve_an_unrelated_object():
+    extractor = FakeRequirementExtractor(
+        {
+            "original": [requirement("explain", "binary search")],
+            "optimized": [requirement("provide", "an explanation of linear search")],
+        }
+    )
+    result = calculate_requirement_preservation("original", "optimized", extractor)
+    assert result.preserved_count == 0
+    assert result.preservation_score == 0.0
+
+
+@pytest.mark.parametrize(
+    "original_requirement,optimized_requirement",
+    [
+        (requirement("describe", "binary search"), requirement("explain", "binary search")),
+        (requirement("list", "sorting methods"), requirement("provide", "a list of sorting methods")),
+        (requirement("compare", "binary search and linear search"), requirement("contrast", "binary search and linear search")),
+    ],
+)
+def test_requirement_matching_supports_narrow_action_equivalences(
+    original_requirement, optimized_requirement
+):
+    extractor = FakeRequirementExtractor(
+        {"original": [original_requirement], "optimized": [optimized_requirement]}
+    )
+    result = calculate_requirement_preservation("original", "optimized", extractor)
+    assert result.preserved_count == 1
+    assert result.preservation_score == 1.0
+
+
+def test_reported_binary_search_paraphrase_preserves_all_requirements():
+    result = calculate_requirement_preservation(
+        "Explain binary search in C++ for a beginner. Give 3 examples...",
+        "Provide a beginner-friendly explanation of the binary search algorithm in C++. Include 3 examples...",
+        SpacyRequirementExtractor(),
+    )
+    assert result.preserved_count == result.original_count == 2
+    assert result.preservation_score == 1.0
+
+
+def test_requirement_matching_does_not_ignore_changed_programming_language_context():
+    result = calculate_requirement_preservation(
+        "Explain binary search in C++ for a beginner.",
+        "Provide a beginner-friendly explanation of binary search in Python.",
+        SpacyRequirementExtractor(),
+    )
+    assert result.preserved_count == 0
+    assert result.preservation_score == 0.0
+
+
 def test_requirement_paraphrase_case_exposes_module3_extractor_limit():
     # Module 3 emits an extra "walkthrough" requirement for the original and
     # object phrases that differ, so Module 5 cannot claim full preservation.

@@ -39,7 +39,10 @@ from experiments.benchmark_runner import (
     resolve_dataset_path,
     select_evaluation_prompts,
     validate_frozen_dataset,
+    make_config as make_benchmark_config,
 )
+from experiments.run_benchmark import _parser, _run
+from app.core.config import settings
 
 
 def dataset_records() -> list[dict]:
@@ -83,6 +86,45 @@ def make_config(dataset_path: Path, **kwargs) -> BenchmarkConfig:
     }
     values.update(kwargs)
     return BenchmarkConfig(**values)
+
+
+def test_benchmark_temperature_default_is_one_without_changing_explicit_override(
+    dataset_path: Path, monkeypatch
+):
+    monkeypatch.delenv("BENCHMARK_TEMPERATURE", raising=False)
+    assert _parser().parse_args([]).temperature == 1.0
+    assert make_benchmark_config(
+        dataset=dataset_path, optimizer_model="optimizer/mock", target_model="target/mock"
+    ).temperature == 1.0
+    assert _parser().parse_args(["--temperature", "0.7"]).temperature == 0.7
+
+
+@pytest.mark.asyncio
+async def test_benchmark_applies_temperature_to_optimizer_only_during_run(monkeypatch):
+    import experiments.run_benchmark as cli
+
+    observed = {}
+
+    class FakeRunner:
+        def __init__(self, backend_root):
+            pass
+
+        async def run(self, config, **kwargs):
+            observed["optimizer_temperature"] = settings.optimization_temperature
+            observed["target_temperature"] = config.temperature
+            return {"success": True}
+
+    monkeypatch.setattr(cli, "BenchmarkRunner", FakeRunner)
+    previous = settings.optimization_temperature
+    args = _parser().parse_args([
+        "--optimizer-model", "gemini/gemini-3.8-flash",
+        "--target-model", "gemini/gemini-3.8-flash",
+        "--dataset", "test-dataset.json",
+    ])
+
+    assert await _run(args) == {"success": True}
+    assert observed == {"optimizer_temperature": 1.0, "target_temperature": 1.0}
+    assert settings.optimization_temperature == previous
 
 
 def fake_semantic_profile() -> SemanticAnalysis:

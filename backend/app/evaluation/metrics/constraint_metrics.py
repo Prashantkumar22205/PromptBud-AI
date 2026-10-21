@@ -50,16 +50,22 @@ def _constraint_matches(original: Constraint, candidate: Constraint) -> bool:
     return True
 
 
-def _preserved_count(original: Sequence[Constraint], optimized: Sequence[Constraint]) -> int:
+def preserved_constraint_pairs(
+    original: Sequence[Constraint], optimized: Sequence[Constraint]
+) -> list[tuple[Constraint, Constraint]]:
     remaining = list(optimized)
-    preserved = 0
+    preserved: list[tuple[Constraint, Constraint]] = []
     for constraint in original:
         for index, candidate in enumerate(remaining):
             if _constraint_matches(constraint, candidate):
-                preserved += 1
+                preserved.append((constraint, candidate))
                 remaining.pop(index)
                 break
     return preserved
+
+
+def _preserved_count(original: Sequence[Constraint], optimized: Sequence[Constraint]) -> int:
+    return len(preserved_constraint_pairs(original, optimized))
 
 
 def calculate_constraint_preservation(

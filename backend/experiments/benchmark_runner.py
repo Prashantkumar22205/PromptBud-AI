@@ -938,7 +938,7 @@ def make_config(
         dataset_path=Path(dataset),
         optimizer_model=optimizer_model,
         target_model=target_model,
-        temperature=settings.optimization_temperature if temperature is None else temperature,
+        temperature=1.0 if temperature is None else temperature,
         max_output_tokens=settings.optimization_max_output_tokens if max_output_tokens is None else max_output_tokens,
         timeout=settings.optimization_timeout_seconds if timeout is None else timeout,
         categories=tuple(categories),
