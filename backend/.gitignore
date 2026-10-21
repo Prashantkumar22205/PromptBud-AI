@@ -12,11 +12,10 @@ build/
 venv/
 .venv/
 env/
-backend/venv/
-backend/venv_pre_rebuild/
+venv_pre_rebuild/
 
 # Local Python packages
-backend/.python-packages/
+.python-packages/
 
 # Environment variables / secrets
 .env
@@ -41,3 +40,11 @@ htmlcov/
 
 # tiktoken cache
 tiktoken_cache/
+
+# Generated benchmark artifacts
+experiments/benchmark/checkpoints/*
+experiments/benchmark/results/*
+
+# Keep benchmark directory placeholders
+!experiments/benchmark/checkpoints/.gitkeep
+!experiments/benchmark/results/.gitkeep
