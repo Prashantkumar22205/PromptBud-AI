@@ -36,6 +36,8 @@ DEFAULT_SYSTEM_INSTRUCTION = "You are a helpful assistant."
 BANDS = ("short", "medium", "long")
 VARIANTS = ("original", "direct", "guided")
 
+TARGET_REQUEST_DELAY_SECONDS = 5.0
+
 
 def load_results(path: Path) -> dict[str, Any]:
     with path.open("r", encoding="utf-8") as f:
@@ -289,6 +291,8 @@ async def run(args: argparse.Namespace) -> dict[str, Any]:
                 timeout=args.timeout,
             )
 
+            await asyncio.sleep(TARGET_REQUEST_DELAY_SECONDS)
+
             # Do not duplicate large prompt/response text in the terminal.
             status = (
                 "target_error"
@@ -327,6 +331,7 @@ async def run(args: argparse.Namespace) -> dict[str, Any]:
             "temperature": args.temperature,
             "max_output_tokens": args.max_output_tokens,
             "timeout": args.timeout,
+            "target_request_delay_seconds": TARGET_REQUEST_DELAY_SECONDS,
             "system_instruction": DEFAULT_SYSTEM_INSTRUCTION,
         },
         "selected_prompt_ids": [r["prompt_id"] for r in output_records],
@@ -344,6 +349,24 @@ async def run(args: argparse.Namespace) -> dict[str, Any]:
     print(f"Module 5B evaluations attempted: {len(output_records) * 3}")
 
     return output
+
+async def close_litellm_clients() -> None:
+    try:
+        import litellm
+
+        cleanup = getattr(litellm, "close_litellm_async_clients", None)
+
+        if cleanup is not None:
+            await cleanup()
+            print("LiteLLM async clients closed.")
+    except Exception as exc:
+        print(f"Warning: LiteLLM client cleanup failed: {exc}")
+
+async def run_and_cleanup(args: argparse.Namespace) -> None:
+    try:
+        await run(args)
+    finally:
+        await close_litellm_clients()
 
 
 def main() -> int:
@@ -374,7 +397,10 @@ def main() -> int:
     if args.limit < 1:
         parser.error("--limit must be >= 1")
 
-    asyncio.run(run(args))
+    
+
+
+    asyncio.run(run_and_cleanup(args))
     return 0
 
 

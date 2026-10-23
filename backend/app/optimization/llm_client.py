@@ -5,7 +5,7 @@ from __future__ import annotations
 import asyncio
 import logging
 from collections.abc import Mapping
-from typing import Any, Protocol
+from typing import Any, Literal, Protocol
 
 from app.core.config import settings
 from app.optimization.types import LLMCompletion, OptimizationError
@@ -29,6 +29,7 @@ class LLMClient(Protocol):
         temperature: float,
         max_tokens: int,
         timeout: float,
+        credential_role: Literal["optimizer", "target"] = "optimizer",
     ) -> LLMCompletion: ...
 
 
@@ -60,6 +61,7 @@ class LiteLLMClient:
         temperature: float,
         max_tokens: int,
         timeout: float,
+        credential_role: Literal["optimizer", "target"] = "optimizer",
     ) -> LLMCompletion:
         try:
             import litellm
@@ -78,7 +80,10 @@ class LiteLLMClient:
                 if model.startswith("gemini/"):
                     api_key = settings.gemini_api_key
                 elif model.startswith("groq/"):
-                    api_key = settings.groq_api_key
+                    if credential_role == "target":
+                        api_key = settings.groq_target_api_key
+                    else:
+                        api_key = settings.groq_optimizer_api_key
                 elif model.startswith(NVIDIA_NIM_PREFIX):
                     api_key = settings.nvidia_nim_api_key
 

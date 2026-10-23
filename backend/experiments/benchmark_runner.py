@@ -129,6 +129,7 @@ class TargetModelRunner:
                 temperature=temperature,
                 max_tokens=max_output_tokens,
                 timeout=timeout,
+                credential_role="target",
             )
             elapsed_ms = max(0.0, (perf_counter() - started) * 1000.0)
             total = completion.total_tokens

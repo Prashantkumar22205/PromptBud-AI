@@ -54,7 +54,8 @@ class Settings(BaseSettings):
 
    # LLM Configuration
     gemini_api_key: str
-    groq_api_key: str | None = None
+    groq_optimizer_api_key: str | None = None
+    groq_target_api_key: str | None = None
     nvidia_nim_api_key: str | None = None
     
     response_evaluator_model: str | None = None
